@@ -88,48 +88,48 @@
                             aria-label="Item">
                     </div>
                     <div class="  col-md-2">
-                        <input type="text" class=" form-control" name="Item" placeholder="Item" aria-label="Item">
+                        <input type="text" class=" form-control" required name="Item" placeholder="Item" aria-label="Item">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class=" form-control small" name="Thickness" placeholder="Thickness"
+                        <input type="number" class=" form-control small" required name="Thickness" placeholder="Thickness"
                             aria-label="Thickness">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class=" form-control" name="Width" placeholder="Width" aria-label="Width">
+                        <input type="number" class=" form-control" id="widthInput" required name="Width" placeholder="Width" aria-label="Width">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class="form-control" name="Height" placeholder="Height"
+                        <input type="number" class="form-control" id="heightInput" required name="Height" placeholder="Height"
                             aria-label="Height">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class="form-control" name="QTY" placeholder="Quantity" aria-label="QTY">
+                        <input type="number" class="form-control" id="qtyInput" required name="QTY" placeholder="Quantity" aria-label="QTY">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class="form-control" name="TotalSQFT" placeholder="TOTAL SQ.FT"
+                        <input type="number" class="form-control"id="totalSqftInput" name="TotalSQFT" readonly  placeholder="TOTAL SQ.FT"
                             aria-label="TotalSQFT">
                     </div>
                     <div class="col-md-1">
-                        <input type="text" class="form-control" name="Remarks" placeholder="REMARKS"
+                        <input type="text" class="form-control"required name="Remarks" placeholder="REMARKS"
                             aria-label="Remarks">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class="form-control" name="Finish" placeholder="FINISH"
+                        <input type="number" class="form-control" required name="Finish" placeholder="FINISH"
                             aria-label="Finish">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class="form-control" name="RateSQFT" placeholder="RATE-SQFT"
+                        <input type="number" id="rateInput" class="form-control"required  name="RateSQFT" placeholder="RATE-SQFT"
                             aria-label="RateSQFT">
                     </div>
                     <div class="col-md-1">
-                        <input type="number" class="form-control" name="Amount" placeholder="Amount"
+                        <input type="number" class="form-control" id="amountInput" name="Amount" readonly placeholder="Amount"
                             aria-label="Amount">
                     </div>
                     {{!--
                 </div> --}}
-            </form>
-            {{!--
+
+                {{!--
         </div> --}}
         <button type="button" onclick="addNewItem(this)" class="mx-auto btn btn-outline-primary">Add Item</button>
-
+        </form>
     </div>
 </div>
