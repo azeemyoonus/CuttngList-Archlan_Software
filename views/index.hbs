@@ -17,8 +17,9 @@
                     </th>
                     <th colspan='6'></th>
                 </tr>
+
                 <tr>
-                    <th class="col-md-1">SL.NO</th>
+                    <th class="col-md-1">sl.no</th>
                     <th class="col-md-2">Item</th>
                     <th class="col-md-1">Thickness</th>
                     <th class="col-md-1">Width</th>
@@ -30,49 +31,25 @@
                     <th class="col-md-1">RATE-SQFT</th>
                     <th class="col-md-1">Amount</th>
                 </tr>
+
             </thead>
             <tbody id='itemTableBody'>
-                <tr onclick='editItem(this)'>
+                {{#each response}}
+                <tr>
                     <th>1</th>
-                    <td contenteditable="true">January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
+                    <td contenteditable="true">{{#each Item}}  {{this}} {{/each}}</td>
+                    <td>{{Thickness}}</td>
+                    <td>{{Width}}</td>
+                    <td>{{Height}}</td>
+                    <td>{{QTY}}</td>
+                    <td>{{TotalSQFT}}</td>
+                    <td>{{Remarks}}</td>
+                    <td>{{Finish}}</td>
+                    <td>{{RateSQFT}}</td>
+                    <td>{{Amount}}</td>
                 </tr>
-                {{!-- <tr onclick='editItem(this)'>
-                    <th>2</th>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                </tr>
-                <tr onclick='editItem(this)'>
+                {{/each}}
 
-                    <th>3</th>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-                    <td>January</td>
-                    <td>$100</td>
-
-                </tr> --}}
 
             </tbody>
 
@@ -80,56 +57,53 @@
     </div>
 
     <div class=" nav justify-content-center">
-        {{!-- <div class="col-md-12"> --}}
-            <form class="row g-1 col-md-12 ">
-                {{!-- <div> --}}
-                    <div class=" col-md-1">
-                        <input hidden type="text" class=" form-control" name="Item" placeholder="Item"
-                            aria-label="Item">
-                    </div>
-                    <div class="  col-md-2">
-                        <input type="text" class=" form-control" required name="Item" placeholder="Item" aria-label="Item">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class=" form-control small" required name="Thickness" placeholder="Thickness"
-                            aria-label="Thickness">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class=" form-control" id="widthInput" required name="Width" placeholder="Width" aria-label="Width">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class="form-control" id="heightInput" required name="Height" placeholder="Height"
-                            aria-label="Height">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class="form-control" id="qtyInput" required name="QTY" placeholder="Quantity" aria-label="QTY">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class="form-control"id="totalSqftInput" name="TotalSQFT" readonly  placeholder="TOTAL SQ.FT"
-                            aria-label="TotalSQFT">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="text" class="form-control"required name="Remarks" placeholder="REMARKS"
-                            aria-label="Remarks">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class="form-control" required name="Finish" placeholder="FINISH"
-                            aria-label="Finish">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" id="rateInput" class="form-control"required  name="RateSQFT" placeholder="RATE-SQFT"
-                            aria-label="RateSQFT">
-                    </div>
-                    <div class="col-md-1">
-                        <input type="number" class="form-control" id="amountInput" name="Amount" readonly placeholder="Amount"
-                            aria-label="Amount">
-                    </div>
-                    {{!--
-                </div> --}}
 
-                {{!--
-        </div> --}}
-        <button type="button" onclick="addNewItem(this)" class="mx-auto btn btn-outline-primary">Add Item</button>
+        <form method="post" action="addItem" class="row g-1 col-md-12 ">
+
+            <div class=" col-md-1">
+                <input hidden type="text" class=" form-control" name="Item" placeholder="Item" aria-label="Item">
+            </div>
+            <div class="col-md-2">
+                <input type="text" class=" form-control" required name="Item" placeholder="Item" aria-label="Item">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class=" form-control small" required name="Thickness" placeholder="Thickness"
+                    aria-label="Thickness">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class=" form-control" id="widthInput" required name="Width" placeholder="Width"
+                    aria-label="Width">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control" id="heightInput" required name="Height" placeholder="Height"
+                    aria-label="Height">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control" id="qtyInput" required name="QTY" placeholder="Quantity"
+                    aria-label="QTY">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control" id="totalSqftInput" name="TotalSQFT" readonly
+                    placeholder="TOTAL SQ.FT" aria-label="TotalSQFT">
+            </div>
+            <div class="col-md-1">
+                <input type="text" class="form-control" required name="Remarks" placeholder="REMARKS"
+                    aria-label="Remarks">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control" required name="Finish" placeholder="FINISH"
+                    aria-label="Finish">
+            </div>
+            <div class="col-md-1">
+                <input type="number" id="rateInput" class="form-control" required name="RateSQFT"
+                    placeholder="RATE-SQFT" aria-label="RateSQFT">
+            </div>
+            <div class="col-md-1">
+                <input type="number" class="form-control" id="amountInput" name="Amount" readonly placeholder="Amount"
+                    aria-label="Amount">
+            </div>
+
+            <button type="submit button" class="mx-auto btn btn-outline-primary">Add Item</button>
         </form>
     </div>
 </div>
