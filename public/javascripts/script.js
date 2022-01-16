@@ -60,6 +60,10 @@ $("#totalSqftInput").on("change paste keyup cut select", function () {
   
 })
 
+downloadExcel=()=>{
+ alert("working")   
+ 
+}
 
 
 function editItem(srow) {   

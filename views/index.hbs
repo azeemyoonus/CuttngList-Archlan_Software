@@ -15,7 +15,11 @@
                     <th colspan='3'>
                         <center>All Size in MM</center>
                     </th>
-                    <th colspan='6'></th>
+                    <th colspan='6'>
+                       <button onclick="downloadExcel()" type=" button"
+                                class="mx-auto btn btn-outline-primary">Download Excel</button>
+                            
+                    </th>
                 </tr>
 
                 <tr>
@@ -35,9 +39,10 @@
             </thead>
             <tbody id='itemTableBody'>
                 {{#each response}}
+
                 <tr>
-                    <th>1</th>
-                    <td contenteditable="true">{{#each Item}}  {{this}} {{/each}}</td>
+                    <th id="serialNO"> {{ @index }}</th>
+                    <td>{{#each Item}} {{this}} {{/each}}</td>
                     <td>{{Thickness}}</td>
                     <td>{{Width}}</td>
                     <td>{{Height}}</td>

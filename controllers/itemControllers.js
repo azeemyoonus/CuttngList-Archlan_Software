@@ -2,7 +2,7 @@ var itemservices = require('../services/itemServices')
 
 exports.getAllItems = async (req, res) => {
     await itemservices.getAllItems().then((response)=>{
-        console.log(response);
+        // console.log(response);
         res.render("index", {response});
     })
         
