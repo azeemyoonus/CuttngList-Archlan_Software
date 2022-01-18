@@ -16,9 +16,17 @@
                         <center>All Size in MM</center>
                     </th>
                     <th colspan='6'>
-                       <button onclick="downloadExcel()" type=" button"
-                                class="mx-auto btn btn-outline-primary">Download Excel</button>
-                            
+                        {{!-- <div class="d-flex flex-row-reverse"> --}}
+                            <div align='right' class="p-2">
+                                {{!-- <form action="downloadExcel"> --}}
+                                    <button onclick='downloadExcel()' type="submit  button"
+                                        class="mx-auto btn btn-outline-primary">Download Excel</button>
+                                {{!-- </form> --}}
+                            </div>
+
+                            {{!--
+                        </div> --}}
+
                     </th>
                 </tr>
 
@@ -38,11 +46,11 @@
 
             </thead>
             <tbody id='itemTableBody'>
-                {{#each response}}
+                {{#each response }}
 
                 <tr>
-                    <th id="serialNO"> {{ @index }}</th>
-                    <td>{{#each Item}} {{this}} {{/each}}</td>
+                    <td id="serialNO"></td>
+                    <td> {{Item}}</td>
                     <td>{{Thickness}}</td>
                     <td>{{Width}}</td>
                     <td>{{Height}}</td>
@@ -53,6 +61,7 @@
                     <td>{{RateSQFT}}</td>
                     <td>{{Amount}}</td>
                 </tr>
+
                 {{/each}}
 
 
@@ -66,10 +75,11 @@
         <form method="post" action="addItem" class="row g-1 col-md-12 ">
 
             <div class=" col-md-1">
-                <input hidden type="text" class=" form-control" name="Item" placeholder="Item" aria-label="Item">
+                {{!-- <input hidden type="text" class=" form-control"> --}}
             </div>
             <div class="col-md-2">
-                <input type="text" class=" form-control" required name="Item" placeholder="Item" aria-label="Item">
+                <input type="text" class=" form-control" id="itemInput" required name="Item" placeholder="Item"
+                    aria-label="Item">
             </div>
             <div class="col-md-1">
                 <input type="number" class=" form-control small" required name="Thickness" placeholder="Thickness"

@@ -61,8 +61,8 @@ $("#totalSqftInput").on("change paste keyup cut select", function () {
 })
 
 downloadExcel=()=>{
- alert("working")   
- 
+    window.location.href = '/downloadExcel';
+
 }
 
 

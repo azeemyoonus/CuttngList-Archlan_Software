@@ -1,8 +1,16 @@
 body { 
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   overflow-x:hidden;
+  counter-reset: Serial;           /* Set the Serial counter to 0 */
 }
 
 a {
   color: #00B7FF;
 }
+table
+
+		tr td:first-child:before
+		{
+		  counter-increment: Serial;      
+		  content: counter(Serial); 
+		}
