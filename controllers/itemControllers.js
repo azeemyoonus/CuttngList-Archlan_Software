@@ -60,7 +60,7 @@ exports.downloadExcel = async (_req, res) => {
         worksheet.addRow(element);
         count++;
     });
-worksheet.views=[{showGridLines:true}];
+
     // Making first line in excel bold
     worksheet.getRow(1).eachCell((cell) => {
         cell.font = { bold: true };
