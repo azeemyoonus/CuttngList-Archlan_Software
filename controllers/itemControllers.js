@@ -1,16 +1,11 @@
 var itemservices = require("../services/itemServices");
 const ExcelJS = require("exceljs");
+const { response } = require("express");
 
 exports.getAllItems = async (_req, res) => {
     await itemservices.getAllItems().then((response) => {
         // console.log(response);
-        var count= response.length;
-        var slno=[];
-        for(let i=1; i<=count;i++){
-            slno[i-1]=i;
-        }
-        console.log(response);
-        res.render("index", { response ,slno});
+        res.render("index", { response });
     });
 };
 
@@ -69,14 +64,38 @@ exports.downloadExcel = async (_req, res) => {
     try {
         const data = await workbook.xlsx.writeFile(`${path}/Items.xlsx`)
             .then(async () => {
-                res.download(`${path}/Items.xlsx`);
+                    res.download(`${path}/Items.xlsx`);            
             })
 
-    } catch (err) {
-        res.send({
-            status: "error",
-            message: "Something went wrong",
-        });
+    } catch (message) {      
+        res.render("error",{message});        
     }
     
 };
+
+
+exports.editItem= async (req, res)=>{   
+    console.log(req.params.id);
+    await itemservices.getAnItem(req.params.id).then((response)=>{
+        console.log(response);
+        res.render("editItem",{response});
+    })
+
+}
+
+exports.updateItem= async (req, res)=>{
+    console.log("hello here put")    ;
+    console.log(req.body);
+    console.log(req.params.id);
+    await itemservices.updateItem(req.params.id, req.body).then((response)=>{
+        console.log(response);
+        res.redirect('/');
+    })
+}
+exports.deleteItem= async(req, res)=>{
+    console.log("hello");
+    await itemservices.deleteItem(req.params.id).then((response)=>{
+        console.log(response);
+        res.json({status:true});
+    })
+}

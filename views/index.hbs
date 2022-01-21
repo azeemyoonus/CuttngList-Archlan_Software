@@ -7,7 +7,7 @@
             </h1>
     </nav>
     <div class="col-md-12">
-        <table id='itemTable' class="col-md-12  table table-bordered  table-hover">
+        <table id='itemTable' class="col-md-12  table table-white border-secondary table-hover table-bordered  ">
             <thead>
                 <tr>
                     <th colspan="2"></th>
@@ -15,13 +15,14 @@
                     <th colspan='3'>
                         <center>All Size in MM</center>
                     </th>
-                    <th colspan='6'>
+                    <th colspan='7'>
                         {{!-- <div class="d-flex flex-row-reverse"> --}}
                             <div align='right' class="p-2">
                                 {{!-- <form action="downloadExcel"> --}}
                                     <button onclick='downloadExcel()' type="submit  button"
                                         class="mx-auto btn btn-outline-primary">Download Excel</button>
-                                {{!-- </form> --}}
+                                    {{!--
+                                </form> --}}
                             </div>
 
                             {{!--
@@ -31,37 +32,49 @@
                 </tr>
 
                 <tr>
-                    <th class="col-md-1">sl.no</th>
-                    <th class="col-md-2">Item</th>
-                    <th class="col-md-1">Thickness</th>
-                    <th class="col-md-1">Width</th>
-                    <th class="col-md-1">Height</th>
-                    <th class="col-md-1">QTY</th>
-                    <th class="col-md-1">TOTAL SQ.FT</th>
-                    <th class="col-md-1">REMARKS</th>
-                    <th class="col-md-1">FINISH</th>
-                    <th class="col-md-1">RATE-SQFT</th>
-                    <th class="col-md-1">Amount</th>
+                    <th style="width: 1%;">SL</th>
+                    <th style="width: 15%;">Item</th>
+                    <th style="width: 5%;">Thickness</th>
+                    <th style="width: 5%;">Width</th>
+                    <th style="width: 5%;">Height</th>
+                    <th style="width: 5%;">QTY</th>
+                    <th style="width: 5%;">TOTAL SQ.FT</th>
+                    <th style="width: 15%;">REMARKS</th>
+                    <th style="width: 10%;">FINISH</th>
+                    <th style="width: 10%;">RATE-SQFT</th>
+                    <th style="width: 10%;">Amount</th>
+                    <th style="width: 4px;%;">Update</th>
+                    {{!-- <th style="width: 2px;%;">Delete</th> --}}
                 </tr>
 
             </thead>
             <tbody id='itemTableBody'>
                 {{#each response }}
+                {{!-- <form id="indivi_itemForm" method='post' action="editItem."> --}}
+                    <tr>
+                        <td id="serialNO"></td>
+                        <td> {{Item}}</td>
+                        <td>{{Thickness}}</td>
+                        <td>{{Width}}</td>
+                        <td>{{Height}}</td>
+                        <td>{{QTY}}</td>
+                        <td>{{TotalSQFT}}</td>
+                        <td>{{Remarks}}</td>
+                        <td>{{Finish}}</td>
+                        <td>{{RateSQFT}}</td>
+                        <td >{{Amount}}</td>
+                        <td style="display: flex;">
+                            <a href="/editItem/{{_id}}" type=" button" class="mx-auto btn btn-outline-primary"><i
+                                    class="bi bi-pen"></i></a>
+                            <a onclick="deleteItem('{{_id}}','{{Item}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}')"
+                                type="button" class="ms-1 btn btn-outline-primary"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td id="serialNO"></td>
-                    <td> {{Item}}</td>
-                    <td>{{Thickness}}</td>
-                    <td>{{Width}}</td>
-                    <td>{{Height}}</td>
-                    <td>{{QTY}}</td>
-                    <td>{{TotalSQFT}}</td>
-                    <td>{{Remarks}}</td>
-                    <td>{{Finish}}</td>
-                    <td>{{RateSQFT}}</td>
-                    <td>{{Amount}}</td>
-                </tr>
+                    </tr>
 
+                    {{!--
+                </form> --}}
                 {{/each}}
 
 
@@ -72,12 +85,11 @@
 
     <div class=" nav justify-content-center">
 
-        <form method="post" action="addItem" class="row g-1 col-md-12 ">
+        <form id="addItemForm" method="post" action="addItem" class="row g-1 col-md-12 ">
 
             <div class=" col-md-1">
-                {{!-- <input hidden type="text" class=" form-control"> --}}
             </div>
-            <div class="col-md-2">
+            <div class=" col-md-2">
                 <input type="text" class=" form-control" id="itemInput" required name="Item" placeholder="Item"
                     aria-label="Item">
             </div>
@@ -106,18 +118,18 @@
                     aria-label="Remarks">
             </div>
             <div class="col-md-1">
-                <input type="number" class="form-control" required name="Finish" placeholder="FINISH"
-                    aria-label="Finish">
+                <input type="text" class="form-control" required name="Finish" placeholder="FINISH" aria-label="Finish">
             </div>
             <div class="col-md-1">
                 <input type="number" id="rateInput" class="form-control" required name="RateSQFT"
                     placeholder="RATE-SQFT" aria-label="RateSQFT">
             </div>
-            <div class="col-md-1">
+            <div class="  col-md-1">
                 <input type="number" class="form-control" id="amountInput" name="Amount" readonly placeholder="Amount"
                     aria-label="Amount">
             </div>
-
+            <div class=" col-md-1">
+            </div>
             <button type="submit button" class="mx-auto btn btn-outline-primary">Add Item</button>
         </form>
     </div>
