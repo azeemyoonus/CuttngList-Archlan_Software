@@ -1,11 +1,15 @@
 var itemservices = require("../services/itemServices");
+var generalServices = require('../services/generalService');
 const ExcelJS = require("exceljs");
 const { response } = require("express");
 
 exports.getAllItems = async (_req, res) => {
+    totalAmount = await itemservices.getTotalAmount();
+    totalAmountInWord = await generalServices.rupeesToWords(totalAmount);
+    totalSQFT = await itemservices.getTottalSQFT();
     await itemservices.getAllItems().then((response) => {
         // console.log(response);
-        res.render("index", { response });
+        res.render("index", { response, totalAmount, totalSQFT, totalAmountInWord });
     });
 };
 
@@ -21,15 +25,15 @@ exports.downloadExcel = async (_req, res) => {
     console.log("here router");
     const workbook = new ExcelJS.Workbook();
     workbook.creator = "Azeem";
-    workbook.lastModifiedBy = "Azeem";   
-    workbook.modified = new Date();   
+    workbook.lastModifiedBy = "Azeem";
+    workbook.modified = new Date();
 
     const worksheet = workbook.addWorksheet("Items"); // New Worksheet
 
     worksheet.columns = [
         {
             header: "Sl.no.", key: "s_no", width: 6,
-            style:{ alignment : { vertical: 'middle', horizontal: 'center' }}
+            style: { alignment: { vertical: 'middle', horizontal: 'center' } }
         },
         { header: 'Item', key: 'Item', width: 28 },
         { header: 'Thickness', key: 'Thickness', width: 10 },
@@ -64,38 +68,38 @@ exports.downloadExcel = async (_req, res) => {
     try {
         const data = await workbook.xlsx.writeFile(`${path}/Items.xlsx`)
             .then(async () => {
-                    res.download(`${path}/Items.xlsx`);            
+                res.download(`${path}/Items.xlsx`);
             })
 
-    } catch (message) {      
-        res.render("error",{message});        
+    } catch (message) {
+        res.render("error", { message });
     }
-    
+
 };
 
 
-exports.editItem= async (req, res)=>{   
+exports.editItem = async (req, res) => {
     console.log(req.params.id);
-    await itemservices.getAnItem(req.params.id).then((response)=>{
+    await itemservices.getAnItem(req.params.id).then((response) => {
         console.log(response);
-        res.render("editItem",{response});
+        res.render("editItem", { response });
     })
 
 }
 
-exports.updateItem= async (req, res)=>{
-    console.log("hello here put")    ;
+exports.updateItem = async (req, res) => {
+    console.log("hello here put");
     console.log(req.body);
     console.log(req.params.id);
-    await itemservices.updateItem(req.params.id, req.body).then((response)=>{
+    await itemservices.updateItem(req.params.id, req.body).then((response) => {
         console.log(response);
         res.redirect('/');
     })
 }
-exports.deleteItem= async(req, res)=>{
+exports.deleteItem = async (req, res) => {
     console.log("hello");
-    await itemservices.deleteItem(req.params.id).then((response)=>{
+    await itemservices.deleteItem(req.params.id).then((response) => {
         console.log(response);
-        res.json({status:true});
+        res.json({ status: true });
     })
 }

@@ -62,7 +62,7 @@
                         <td>{{Remarks}}</td>
                         <td>{{Finish}}</td>
                         <td>{{RateSQFT}}</td>
-                        <td >{{Amount}}</td>
+                        <td>{{Amount}}</td>
                         <td style="display: flex;">
                             <a href="/editItem/{{_id}}" type=" button" class="mx-auto btn btn-outline-primary"><i
                                     class="bi bi-pen"></i></a>
@@ -76,7 +76,15 @@
                     {{!--
                 </form> --}}
                 {{/each}}
-
+                <tr>
+                    <th class="text-end" colspan="6">Total SQFT</th>
+                    <th> {{totalSQFT}}</th>
+                    <th class="text-end" colspan="3">Total Amount <br>{{totalAmountInWord}} </th>
+                    <th>
+                        {{totalAmount}}
+                    </th>
+                    <td> </td>
+                </tr>
 
             </tbody>
 

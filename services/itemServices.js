@@ -54,3 +54,37 @@ exports.deleteItem = (id) => {
         })
     })
 }
+
+exports.getTotalAmount = () => {
+    return new Promise(async (resolve, reject) => {
+        total = await Item.aggregate([{
+
+            $group:
+            {
+                _id: null,
+                total: { $sum: "$Amount" }
+            }
+
+        }]).exec((err, data) => {
+            if (err) reject(err);
+            else resolve(data[0].total);
+        });
+    })
+}
+
+exports.getTottalSQFT=()=>{
+    return new Promise(async(resolve, reject)=>{
+        total = await Item.aggregate([{
+
+            $group:
+            {
+                _id: null,
+                total: { $sum: "$TotalSQFT" }
+            }
+
+        }]).exec((err, data) => {
+            if (err) reject(err);
+            else resolve(data[0].total);
+        });
+    })
+}

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "convert-rupees-into-words": "^1.0.6",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "exceljs": "^4.3.0",
