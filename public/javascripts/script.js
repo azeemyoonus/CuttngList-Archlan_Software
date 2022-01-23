@@ -23,6 +23,7 @@ $("#heightInput").on("change paste keyup cut select", function () { findTotalSqf
 $("#rateInput").on("change paste keyup cut select", function () { findTotalAmount() });
 $("#totalSqftInput").on("change paste keyup cut select", function () { findTotalAmount() });
 
+
 downloadExcel = () => {
   window.location.href = "/downloadExcel";
 };
@@ -73,19 +74,13 @@ function deleteItem(
 }
 
 
-// $("#jobcardForm").submit((e)=>{
-//   e.preventDefault();
-//   data= $("#jobNoInput").val();
-//   $.ajax({
-//     url:"/jobcardView/"+data,
-//     method:"post",
-//     success:(response)=>{
-//       if(response.staus==true){
-//         alert("all done");
-//       }
-//     }
-//   })
-// })
+$("#jobcardForm").submit((e)=>{
+  e.preventDefault();
+  data= $("#jobNoInput").val();  
+ 
+         location.href="/viewjobcard/"+data;
+   
+})
 
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);

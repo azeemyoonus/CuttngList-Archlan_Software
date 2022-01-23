@@ -34,18 +34,18 @@
               <ul class="ms-auto nav  navbar-nav  ">
 
                 <form action="/getjobcard" method="post" id="jobcardForm" class="d-flex">
-                  <input id="jobNoInput" class="form-control me-2 text-wrap" name="jobCardNo" type="search" placeholder="Job Card Number" aria-label="Search">
-                  <button class="btn btn-outline-success text-wrap"  type="submit">Search </button>
+                  <input id="jobNoInput" class="form-control me-2 text-wrap" value="" name="jobCardNo" type="search" placeholder="Job Card Number" aria-label="Search">
+                  <button id="jobSearchBtn" class="btn btn-outline-success text-wrap"  type="submit">Search </button>
                 </form>
 
 
                 <li class="nav-item   ">
                   <a style="color: black; font-size: medium;" class="ml-1 nav-link  underline under  "
-                    href="#about">All Job Cards</a>
+                    href="#about"><i class="bi bi-file-earmark-text"></i> Job Cards</a>
                 </li>
                 <li class=" nav-item">
                   <a style="color: black; font-size: medium;" class="ml-1 nav-link underline under "
-                    href="/addNewJobCard">Add New Job Card</a>
+                    href="/addNewJobCard"><i class="bi bi-file-earmark-plus"></i> Job Card</a>
                 </li>
                 {{!-- <li class=" nav-item">
                   <a style="color: black; font-size: medium;" class="ml-1 nav-link underline under "

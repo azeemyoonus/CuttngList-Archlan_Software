@@ -121,17 +121,24 @@ exports.addNewJobCard = async (req, res) => {
 
 }
 
-exports.getJobCard= async(req, res)=>{
+// exports.getJobCard= async(req, res)=>{
 
-    res.redirect('/viewjobcard/'+req.body.jobCardNo);
-}
+//     await itemservices.getJobCardDetails(req.body.jobCardNo).then((response)=>{
+//         console.log(response);
+       
+//         res.end();
+//         // res.render('jobcard',{response});
+//     })
+//     // res.redirect('/viewjobcard/'+req.body.jobCardNo);
+// }
 
 exports.viewJobCard=async(req, res)=>{
     console.log("hello");
-    console.log(req.params.no);
+    console.log(req.params.id);
     await itemservices.getJobCardDetails(req.params.no).then((response)=>{
         console.log(response);
         res.render('jobcard',{response});
+        
     })
 
    
