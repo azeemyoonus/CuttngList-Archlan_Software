@@ -18,5 +18,6 @@
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
     "promise": "^8.1.0"
-  }
+  },
+  "devDependencies": {}
 }

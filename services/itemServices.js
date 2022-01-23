@@ -1,15 +1,25 @@
 var Item = require("../models/item");
-
+var objectid = require('mongodb').ObjectID;
+var mongoose = require('mongoose');
 
 exports.addItem = (details) => {
     return new Promise(async (resolve, reject) => {
         // console.log(details);
-        let item = new Item(details);
-        await item.save().then((res) => {
+        // let item = new Item(details);
+        console.log("fromhere");
+        console.log(details);
+         await Item.updateOne(
+            {_id: mongoose.mongo.ObjectId("61e6eb675e89d6b53fefad0f") },
+            { $push: { Items: details } }
+            
+        ).then((res) => {
             resolve(res);
         }).catch((err) => {
             reject(err);
         })
+
+
+        // await item.save()
 
     })
 
@@ -86,5 +96,28 @@ exports.getTottalSQFT=()=>{
             if (err) reject(err);
             else resolve(data[0].total);
         });
+    })
+}
+
+exports.addJobCard=(data)=>{
+    return new Promise(async (resolve, reject)=>{
+        let item = new Item(data);
+        await item.save().then((res) => {
+            resolve(res);
+        }).catch((err) => {
+            reject(err);
+        })
+    })
+}
+
+exports.getJobCardDetails=(cardNO)=>{
+    return new Promise(async (resolve, reject)=>{
+        Item.findOne({ JobCard: Number.parseInt(cardNO)}, function (err, doc){
+            if(!err){
+                // console.log(doc);
+                resolve(doc);
+            }
+            else reject(err);
+          });
     })
 }

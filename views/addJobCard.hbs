@@ -1,0 +1,26 @@
+<section style="padding-top: 7em;padding-bottom:5em;" class=" container-fluid bg-light">
+
+    <div class="mt-3 border border-secondary rounded-top rounded-bottom  container  ">
+        <p class="fs-3 mt-3 text-center fw-light text-muted">Add Job Card </p>
+
+        <form action="/addJobCard" method="post" class="row g-3">
+            <div class="col-md-6">
+                <label for="jobnumberInput" class="form-label">Job Card Number</label>
+                <input required name="JobCard" type="number" class="form-control" id="jobnumberInput">
+            </div>
+            <div class="col-md-6">
+                <label for="dateInput" class="form-label">Date </label>
+                <input required type="date" name="Date" class="form-control" id="dateInput" placeholder="Date">
+            </div>
+            <div class="col-md-6">
+                <label for="siteNameInput" class="form-label">Site Name</label>
+                <input required type="text" name="SiteName" class="form-control" id="siteNameInput">
+            </div>
+            <div align='center' class="col-12">
+                <button type="submit" class="btn btn-primary">Add Job Card</button>
+            </div>
+        </form>
+
+    </div>
+
+</section>
