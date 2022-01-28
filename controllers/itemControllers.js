@@ -18,11 +18,10 @@ exports.getAllItems = async (_req, res) => {
 exports.addItem = async (req, res) => {
     console.log(req.body);
     data= req.body;
-
     Item= {data};
     console.log(Item.data);
     await itemservices.addItem(Item.data, req.params.no).then((response) => {
-        // console.log(response);
+        console.log(response);
         res.redirect('/viewjobcard/'+req.params.no);
     });
 };

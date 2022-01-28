@@ -24,8 +24,8 @@
 
 
 
-    <div class="card shadow rounded   rounded mx-2 mb-3 mt-4  border border-muted ">
-        <div class="mx-1 my-1">
+    <div class="card shadow-sm rounded  mx-2 mb-3 mt-4  border border-muted ">
+        <div class="rounded ">
 
 
             <table id='itemTable' class="col-md-12  table  table-white border-secondary table-hover table-bordered  ">
@@ -38,8 +38,11 @@
                         </th>
                         <th colspan='7'>
                             <div align='right' class="p-2">
+                                <button id="addItemBtn" onclick='addItem()' type="submit  button"
+                                    class="mx-auto btn btn-outline-primary">Add Item</button>
                                 <button onclick='downloadExcel()' type="submit  button"
                                     class="mx-auto btn btn-outline-primary">Download Excel</button>
+                                    
                             </div>
                         </th>
                     </tr>
@@ -179,10 +182,10 @@
     </div>
 
 
-    <div class="card rounded mx-2 mb-3 mt-4  border border-muted   ">
-        <p class="fs-3 text-center mt-3 fw-light text-muted">Add Item </p>
+    <div id="addItemDiv" hidden class="card rounded mx-2 mb-2 mt-3  border border-muted   ">
+        <p class=" fs-3 text-center mt-3 fw-light text-muted">Add Item </p>
         {{#with response}}
-        <form method="post" class="" action='/updateItem/{{_id}}'>
+        <form id="addItemForm" method="post" class="" action='addItem/{{JobCard}}'>
 
             <div class="row mx-1 mt-2 g-2">
                 <div class="col-md-8  form-floating mb-3 mt-3 ">
@@ -198,22 +201,22 @@
 
             <div class="row g-2  mx-1">
                 <div class="col-md-3 form-floating mb-3 ">
-                    <input type="number" class="form-control" name="Width" id="widthInput" value="{{Width}}"
+                    <input type="number" class="form-control widthInput" name="Width" id="widthInput" value="{{Width}}"
                         placeholder="Width">
                     <label for="widthInput">Width</label>
                 </div>
                 <div class="col-md-3 form-floating mb-3">
-                    <input type="number" class="form-control" name="Height" id="heightInput" value="{{Height}}"
+                    <input type="number" class="form-control heightInput" name="Height" id="heightInput" value="{{Height}}"
                         placeholder="Height">
                     <label for="heightInput">Height</label>
                 </div>
                 <div class="col-md-2 form-floating mb-3">
-                    <input type="number" class="form-control" name="QTY" id="qtyInput" value="{{QTY}}"
+                    <input type="number" class="form-control qtyInput"  name="QTY" id="qtyInput" value="{{QTY}}"
                         placeholder="QTY">
                     <label for="qtyInput">Qty</label>
                 </div>
                 <div class="col-md-4 form-floating mb-3">
-                    <input type="number" readonly class="form-control" name="TotalSQFT" id="totalSqftInput"
+                    <input type="number" readonly class="form-control totalSqftInput" name="TotalSQFT" id=""
                         value="{{TotalSQFT}}" placeholder="Total SQFT">
                     <label for="totalSqftInput">Total SQFT</label>
                 </div>
@@ -232,12 +235,12 @@
             </div>
             <div class="row g-2  mx-1">
                 <div class="col-md-8 form-floating mb-3 ">
-                    <input type="number" class="form-control" name="RateSQFT" value="{{RateSQFT}}" id="rateInput"
+                    <input type="number" class="form-control rateInput" name="RateSQFT" value="{{RateSQFT}}" id=""
                         placeholder="Rate SQFT">
                     <label for="rateInput">Rate SQFT</label>
                 </div>
                 <div class="col-md-4 form-floating ">
-                    <input type="number" readonly class="form-control" name="Amount" value="{{Amount}}" id="amountInput"
+                    <input type="number" readonly class="form-control amountInput" name="Amount" value="{{Amount}}" id="amountInput"
                         placeholder="Amount">
                     <label for="amountInput">Amount</label>
                 </div>
@@ -252,59 +255,5 @@
     </div>
 
 
-
-
-
-    <div class=" nav justify-content-center">
-
-        <form id="addItemForm" method="post" {{#with response}} action="addItem/{{JobCard}}" {{/with}}
-            class="row g-1 col-md-12 ">
-
-            <div class=" col-md-1">
-            </div>
-            <div class=" col-md-2">
-                <input type="text" class=" form-control" id="itemInput" name="ItemName" required placeholder="Item"
-                    aria-label="Item">
-            </div>
-            <div class="col-md-1">
-                <input type="number" class=" form-control small" required name="Thickness" placeholder="Thickness"
-                    aria-label="Thickness">
-            </div>
-            <div class="col-md-1">
-                <input type="number" class=" form-control" id="widthInput" required name="Width" placeholder="Width"
-                    aria-label="Width">
-            </div>
-            <div class="col-md-1">
-                <input type="number" class="form-control" id="heightInput" required name="Height" placeholder="Height"
-                    aria-label="Height">
-            </div>
-            <div class="col-md-1">
-                <input type="number" class="form-control" id="qtyInput" required name="QTY" placeholder="Quantity"
-                    aria-label="QTY">
-            </div>
-            <div class="col-md-1">
-                <input type="number" class="form-control" id="totalSqftInput" name="TotalSQFT" readonly
-                    placeholder="TOTAL SQ.FT" aria-label="TotalSQFT">
-            </div>
-            <div class="col-md-1">
-                <input type="text" class="form-control" required name="Remarks" placeholder="REMARKS"
-                    aria-label="Remarks">
-            </div>
-            <div class="col-md-1">
-                <input type="text" class="form-control" required name="Finish" placeholder="FINISH" aria-label="Finish">
-            </div>
-            <div class="col-md-1">
-                <input type="number" id="rateInput" class="form-control" required name="RateSQFT"
-                    placeholder="RATE-SQFT" aria-label="RateSQFT">
-            </div>
-            <div class="  col-md-1">
-                <input type="number" class="form-control" id="amountInput" name="Amount" readonly placeholder="Amount"
-                    aria-label="Amount">
-            </div>
-            <div class=" col-md-1">
-            </div>
-            <button type="submit button" class="mx-auto btn btn-outline-primary">Add Item</button>
-        </form>
-    </div>
 
 </section>

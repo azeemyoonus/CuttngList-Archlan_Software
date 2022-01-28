@@ -1,27 +1,27 @@
 findTotalSqft = () => {
-  var height = document.getElementById("heightInput").value;
-  var width = document.getElementById("widthInput").value;
-  var qty = document.getElementById("qtyInput").value;
+  var height = document.getElementsByClassName("heightInput")[0].value;
+  var width = document.getElementsByClassName("widthInput")[0].value;
+  var qty = document.getElementsByClassName("qtyInput")[0].value;
   var totalSQFT = height * width * 0.0000107639104 * qty;
   totalSQFT = totalSQFT.toFixed(3);
-  var totalSQFTInputField = document.getElementById("totalSqftInput");
+  var totalSQFTInputField = document.getElementsByClassName("totalSqftInput")[0];
   totalSQFTInputField.value = totalSQFT;
 };
 
 findTotalAmount = () => {
-  var totalSQFT = document.getElementById("totalSqftInput").value;
-  var rate = document.getElementById("rateInput").value;
+  var totalSQFT = document.getElementsByClassName("totalSqftInput")[0].value;
+  var rate = document.getElementsByClassName("rateInput")[0].value;
   var amount = totalSQFT * rate;
   amount = amount.toFixed(3);
-  var amountInputField = document.getElementById("amountInput");
+  var amountInputField = document.getElementsByClassName("amountInput")[0];
   amountInputField.value = amount;
 };
-$("#qtyInput").on("change paste keyup cut select", function () { findTotalSqft() });
-$("#widthInput").on("change paste keyup cut select", function () { findTotalSqft() });
-$("#heightInput").on("change paste keyup cut select", function () { findTotalSqft() });
+$(".qtyInput").on("change paste keyup cut select", function () { findTotalSqft() });
+$(".widthInput").on("change paste keyup cut select", function () { findTotalSqft() });
+$(".heightInput").on("change paste keyup cut select", function () { findTotalSqft() });
 
-$("#rateInput").on("change paste keyup cut select", function () { findTotalAmount() });
-$("#totalSqftInput").on("change paste keyup cut select", function () { findTotalAmount() });
+$(".rateInput").on("change paste keyup cut select", function () { findTotalAmount() });
+$(".totalSqftInput").on("change paste keyup cut select", function () { findTotalAmount() });
 
 
 downloadExcel = () => {
@@ -74,25 +74,32 @@ function deleteItem(
 }
 
 
-$("#jobcardForm").submit((e)=>{
+$("#jobcardForm").submit((e) => {
   e.preventDefault();
-  data= $("#jobNoInput").val();  
- 
-         location.href="/viewjobcard/"+data;
-   
+  data = $("#jobNoInput").val();
+
+  location.href = "/viewjobcard/" + data;
+
 })
 
 // window.onbeforeunload = function () {
 //   window.scrollTo(0, 0);
 // }
+var stas_addItBtn=true;
 
+addItem = () => {  
+ 
+  if(stas_addItBtn){
+  $("#addItemDiv").removeAttr('hidden');
+  var position = $('#addItemDiv').position();
+  position.top= position.top-90;
+  window.scrollTo(position);
+  stas_addItBtn= false;
+  }
+  else{
+    $("#addItemDiv").attr("hidden", true);
+    stas_addItBtn= true;
+  }
 
-// const elem = document.querySelector('input[id="dateInput"]');
-// const datepicker = new Datepicker(elem, {
-//   // ...options
-//   format: 'dd/mm/yyyy',
-//   nextArrow: `<i class="bi bi-caret-right-fill"></i>`,
-//   prevArrow: `<i class="bi bi-caret-left-fill"></i>`,
-//   // maxDate: Date.now(),
-//   todayHighlight: 'true'
-// });
+  
+}

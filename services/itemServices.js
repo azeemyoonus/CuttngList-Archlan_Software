@@ -16,10 +16,7 @@ exports.addItem = (details, jobNo) => {
         }).catch((err) => {
             reject(err);
         })
-
-
-        // await item.save()
-
+      
     })
 
 }
