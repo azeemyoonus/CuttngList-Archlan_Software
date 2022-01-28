@@ -1,0 +1,18 @@
+<section style="padding-top: 7em;padding-bottom:5em;" class=" bg-light">
+    {{#each response}}
+    <div class="card rounded mx-2 mb-3 border border-muted ">
+        <div align='right' class="card-header">
+            <i class="bi bi-file-excel"></i> Download Excel
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Job Card No: {{JobCard}} </h5>
+            <p class="text-lg card-text ">Site Name: {{SiteName}} </p>
+            <p class="card-text">Date: {{Date}} </p>
+            <div align='right'>
+                <a align='right' href="/viewjobcard/{{JobCard}}" class="text-white btn btn-primary">View Job Card</a>
+            </div>
+
+        </div>
+    </div>
+    {{/each}}
+</section>

@@ -8,7 +8,8 @@ var logger = require('morgan');
 var connection = require('./config/connection')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var jobcardRouter = require('./routes/jobcard');
+
 
 var app = express();
 
@@ -32,7 +33,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/viewjobcard', jobcardRouter);
 
 connection.dbConnect(() => {
   console.log("successfully connect to db")

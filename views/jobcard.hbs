@@ -1,129 +1,107 @@
 <section style="padding-top: 6em;padding-bottom:5em;" class=" container-fluid bg-light">
-   
+
     {{#with response}}
-    <form class=" mt-4 ">
-        <div class="row g-5">
-            
-            {{!-- <label class="visually-hidden" for="jobNumberInput">Job Number</label> --}}
-            <div class="col-md-4">
-                <div class="col input-group">
-                    <div class="input-group-text">Job Number</div>
-                    <input disabled value="{{JobCard}}" type="number" class="bg-white form-control" id="jobNumberInput"
-                        placeholder="Job Number">
-                </div>
-            </div>
 
-            {{!-- <label class="visually-hidden" for="siteNameInput">Site Name</label> --}}
-            <div class="ms-auto col-md-3">
-                <div class=" col input-group">
-                    <div class="input-group-text">Date</div>
-                    <input type="date" class="bg-white form-control" value="{{Date}}" id="dateInput" placeholder="Date"
-                        name="foo">
+    <div class="card rounded mx-2 mb-3 mt-4  border border-muted ">
+
+        <div class="card-body">
+            <h5 class="card-title">Job Card No: {{JobCard}} </h5>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <p style="display: inline;" class=" text-lg card-text "><b>Site Name:</b> {{SiteName}} </p>
                 </div>
+                <div align='right' class=" col-md-6">
+                    <p class="ms-auto  card-text"><b>Date: </b> {{Date}} </p>
+                </div>
+
             </div>
 
         </div>
-        <div class="row mt-1 ">
-            {{!-- <label class="visually-hidden" for="jobNumberInput">Job Number</label> --}}
-            <div class="col-md-4">
-                <div class="col input-group">
-                    <div class="input-group-text">Site Name</div>
-                    <input disabled value="{{SiteName}}" type="text" class="bg-white form-control" id="jobNumberInput"
-                        placeholder="Site Name">
-                </div>
-            </div>
-        </div>
+    </div>
 
-        
-    </form>
-{{/with}}
-
-    {{!-- <input type="text" class="form-control" name="foo"> --}}
+    {{/with}}
 
 
-    <div class="card shadow rounded col-md-12">
-        <table id='itemTable' class="col-md-12  table table-white border-secondary table-hover table-bordered  ">
-            <thead class="table-dark">
-                <tr>
-                    <th colspan="2"></th>
 
-                    <th colspan='3'>
-                        <center>All Size in MM</center>
-                    </th>
-                    <th colspan='7'>
-                        {{!-- <div class="d-flex flex-row-reverse"> --}}
-                            <div align='right' class="p-2">
-                                {{!-- <form action="downloadExcel"> --}}
-                                    <button onclick='downloadExcel()' type="submit  button"
-                                        class="mx-auto btn btn-outline-primary">Download Excel</button>
-                                    {{!--
-                                </form> --}}
-                            </div>
+    <div class="card shadow rounded   rounded mx-2 mb-3 mt-4  border border-muted ">
+        <div class="mx-1 my-1">
 
-                            {{!--
-                        </div> --}}
 
-                    </th>
-                </tr>
-
-                <tr>
-                    <th style="width: 1%;">SL</th>
-                    <th style="width: 15%;">Item</th>
-                    <th style="width: 5%;">Thickness</th>
-                    <th style="width: 5%;">Width</th>
-                    <th style="width: 5%;">Height</th>
-                    <th style="width: 5%;">QTY</th>
-                    <th style="width: 7%;">TOTAL SQ.FT</th>
-                    <th style="width: 15%;">REMARKS</th>
-                    <th style="width: 10%;">FINISH</th>
-                    <th style="width: 10%;">RATE-SQFT</th>
-                    <th style="width: 10%;">Amount</th>
-                    <th style="width: 4px;%;">Update</th>
-                    {{!-- <th style="width: 2px;%;">Delete</th> --}}
-                </tr>
-
-            </thead>
-            <tbody id='itemTableBody'>
-                {{#each needed }}
-                {{!-- <form id="indivi_itemForm" method='post' action="editItem."> --}}
+            <table id='itemTable' class="col-md-12  table  table-white border-secondary table-hover table-bordered  ">
+                <thead class="bg-dark text-white">
                     <tr>
-                        <td id="serialNO"></td>
-                        <td> {{ItemName}}</td>
-                        <td>{{Thickness}}</td>
-                        <td>{{Width}}</td>
-                        <td>{{Height}}</td>
-                        <td>{{QTY}}</td>
-                        <td>{{TotalSQFT}}</td>
-                        <td>{{Remarks}}</td>
-                        <td>{{Finish}}</td>
-                        <td>{{RateSQFT}}</td>
-                        <td>{{Amount}}</td>
-                        <td style="display: flex;">
-                            <a href="/editItem/{{_id}}" type=" button" class="mx-auto btn btn-outline-primary"><i
-                                    class="bi bi-pen"></i></a>
-                            <a onclick="deleteItem('{{_id}}','{{Item}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}')"
-                                type="button" class="ms-1 btn btn-outline-primary"><i class="bi bi-trash"></i></a>
-                        </td>
+                        <th colspan="2"></th>
+
+                        <th colspan='3'>
+                            <center>All Size in MM</center>
+                        </th>
+                        <th colspan='7'>
+                            <div align='right' class="p-2">
+                                <button onclick='downloadExcel()' type="submit  button"
+                                    class="mx-auto btn btn-outline-primary">Download Excel</button>
+                            </div>
+                        </th>
                     </tr>
 
+                    <tr>
+                        <th style="width: 1%;">SL</th>
+                        <th style="width: 15%;">Item</th>
+                        <th style="width: 5%;">Thickness</th>
+                        <th style="width: 5%;">Width</th>
+                        <th style="width: 5%;">Height</th>
+                        <th style="width: 5%;">QTY</th>
+                        <th style="width: 7%;">TOTAL SQ.FT</th>
+                        <th style="width: 15%;">REMARKS</th>
+                        <th style="width: 10%;">FINISH</th>
+                        <th style="width: 10%;">RATE-SQFT</th>
+                        <th style="width: 10%;">Amount</th>
+                        <th style="width: 4px;%;">Update</th>
+                        {{!-- <th style="width: 2px;%;">Delete</th> --}}
                     </tr>
 
-                    {{!--
-                </form> --}}
-                {{/each}}
-                <tr>
-                    <th class="text-end" colspan="6">Total SQFT</th>
-                    <th> {{totalSQFT}}</th>
-                    <th class="text-end" colspan="3">Total Amount <br>{{totalAmountInWord}} </th>
-                    <th>
-                        {{totalAmount}}
-                    </th>
-                    <td> </td>
-                </tr>
+                </thead>
+                <tbody id='itemTableBody'>
+                    {{#with response }}
+                    {{#each Items}}
+                    {{!-- <form id="indivi_itemForm" method='post' action="editItem."> --}}
+                        <tr>
+                            <td id="serialNO"></td>
+                            <td> {{ItemName}}</td>
+                            <td>{{Thickness}}</td>
+                            <td>{{Width}}</td>
+                            <td>{{Height}}</td>
+                            <td>{{QTY}}</td>
+                            <td>{{TotalSQFT}}</td>
+                            <td>{{Remarks}}</td>
+                            <td>{{Finish}}</td>
+                            <td>{{RateSQFT}}</td>
+                            <td>{{Amount}}</td>
+                            <td style="display: flex;">
+                                <a href="/editItem/{{_id}}" type=" button" class="mx-auto btn btn-outline-primary"><i
+                                        class="bi bi-pen"></i></a>
+                                <a onclick="deleteItem('{{_id}}','{{Item}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}')"
+                                    type="button" class="ms-1 btn btn-outline-primary"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
 
-            </tbody>
+                        </tr>
+                        {{/each}}
+                        {{/with}}
+                        <tr>
+                            <th class="text-end" colspan="6">Total SQFT</th>
+                            <th> {{totalSQFT}}</th>
+                            <th class="text-end" colspan="3">Total Amount <br>{{totalAmountInWord}} </th>
+                            <th>
+                                {{totalAmount}}
+                            </th>
+                            <td> </td>
+                        </tr>
 
-        </table>
+                </tbody>
+
+            </table>
+        </div>
     </div>
 
 
@@ -201,9 +179,77 @@
     </div>
 
 
+    <div class="card rounded mx-2 mb-3 mt-4  border border-muted   ">
+        <p class="fs-3 text-center mt-3 fw-light text-muted">Add Item </p>
+        {{#with response}}
+        <form method="post" class="" action='/updateItem/{{_id}}'>
 
+            <div class="row mx-1 mt-2 g-2">
+                <div class="col-md-8  form-floating mb-3 mt-3 ">
+                    <input type="text" class="form-control" name="Item" id="Item" value="{{Item}}" placeholder="Item">
+                    <label for="Item">Item</label>
+                </div>
+                <div class="col-md-4  form-floating mt-3 mb-3 ">
+                    <input type="number" class="form-control" name="Thickness" id="thickness" value="{{Thickness}}"
+                        placeholder="Thickness">
+                    <label for="thickness">Thickness</label>
+                </div>
+            </div>
 
+            <div class="row g-2  mx-1">
+                <div class="col-md-3 form-floating mb-3 ">
+                    <input type="number" class="form-control" name="Width" id="widthInput" value="{{Width}}"
+                        placeholder="Width">
+                    <label for="widthInput">Width</label>
+                </div>
+                <div class="col-md-3 form-floating mb-3">
+                    <input type="number" class="form-control" name="Height" id="heightInput" value="{{Height}}"
+                        placeholder="Height">
+                    <label for="heightInput">Height</label>
+                </div>
+                <div class="col-md-2 form-floating mb-3">
+                    <input type="number" class="form-control" name="QTY" id="qtyInput" value="{{QTY}}"
+                        placeholder="QTY">
+                    <label for="qtyInput">Qty</label>
+                </div>
+                <div class="col-md-4 form-floating mb-3">
+                    <input type="number" readonly class="form-control" name="TotalSQFT" id="totalSqftInput"
+                        value="{{TotalSQFT}}" placeholder="Total SQFT">
+                    <label for="totalSqftInput">Total SQFT</label>
+                </div>
+            </div>
+            <div class="row g-2  mx-1">
+                <div class="col-md-8 form-floating mb-3 ">
+                    <input type="text" class="form-control" id="Remarks" name="Remarks" value="{{Remarks}}"
+                        placeholder="Remarks">
+                    <label for="Item">Remarks</label>
+                </div>
+                <div class="col-md-4 form-floating ">
+                    <input type="text" class="form-control" id="Finish" name="Finish" value="{{Finish}}"
+                        placeholder="Finish">
+                    <label for="Finish">Finish</label>
+                </div>
+            </div>
+            <div class="row g-2  mx-1">
+                <div class="col-md-8 form-floating mb-3 ">
+                    <input type="number" class="form-control" name="RateSQFT" value="{{RateSQFT}}" id="rateInput"
+                        placeholder="Rate SQFT">
+                    <label for="rateInput">Rate SQFT</label>
+                </div>
+                <div class="col-md-4 form-floating ">
+                    <input type="number" readonly class="form-control" name="Amount" value="{{Amount}}" id="amountInput"
+                        placeholder="Amount">
+                    <label for="amountInput">Amount</label>
+                </div>
+            </div>
+            <div align="center">
+                <button type="submit button" class=" btn btn-primary">Add Item</button>
+            </div>
 
+        </form>
+        {{/with}}
+
+    </div>
 
 
 
@@ -211,7 +257,8 @@
 
     <div class=" nav justify-content-center">
 
-        <form id="addItemForm" method="post" action="addItem" class="row g-1 col-md-12 ">
+        <form id="addItemForm" method="post" {{#with response}} action="addItem/{{JobCard}}" {{/with}}
+            class="row g-1 col-md-12 ">
 
             <div class=" col-md-1">
             </div>

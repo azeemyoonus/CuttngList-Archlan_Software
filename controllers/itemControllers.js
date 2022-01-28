@@ -11,18 +11,19 @@ exports.getAllItems = async (_req, res) => {
         // console.log(response);
         needed= response[0].Items;
         // console.log(needed)
-        res.render("index", { response,needed, totalAmount, totalSQFT, totalAmountInWord });
+        res.render("alljobcards", { response,needed, totalAmount, totalSQFT, totalAmountInWord });
     });
 };
 
 exports.addItem = async (req, res) => {
     console.log(req.body);
     data= req.body;
+
     Item= {data};
     console.log(Item.data);
-    await itemservices.addItem(Item.data).then((response) => {
+    await itemservices.addItem(Item.data, req.params.no).then((response) => {
         // console.log(response);
-        res.redirect("/");
+        res.redirect('/viewjobcard/'+req.params.no);
     });
 };
 

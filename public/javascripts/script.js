@@ -82,9 +82,9 @@ $("#jobcardForm").submit((e)=>{
    
 })
 
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-}
+// window.onbeforeunload = function () {
+//   window.scrollTo(0, 0);
+// }
 
 
 // const elem = document.querySelector('input[id="dateInput"]');

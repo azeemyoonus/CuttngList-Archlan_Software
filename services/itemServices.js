@@ -2,16 +2,15 @@ var Item = require("../models/item");
 var objectid = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
 
-exports.addItem = (details) => {
+exports.addItem = (details, jobNo) => {
     return new Promise(async (resolve, reject) => {
         // console.log(details);
         // let item = new Item(details);
         console.log("fromhere");
         console.log(details);
          await Item.updateOne(
-            {_id: mongoose.mongo.ObjectId("61e6eb675e89d6b53fefad0f") },
-            { $push: { Items: details } }
-            
+            {JobCard: jobNo },
+            { $push: { Items: details } }            
         ).then((res) => {
             resolve(res);
         }).catch((err) => {
