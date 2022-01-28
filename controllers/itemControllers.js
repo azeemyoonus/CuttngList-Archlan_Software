@@ -113,7 +113,7 @@ exports.newJobCard = (req, res) => {
 }
 
 exports.addNewJobCard = async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
 
     await itemservices.addJobCard(req.body).then(() => {
       res.redirect('/');
@@ -133,13 +133,9 @@ exports.addNewJobCard = async (req, res) => {
 // }
 
 exports.viewJobCard=async(req, res)=>{
-    console.log("hello");
     console.log(req.params.id);
     await itemservices.getJobCardDetails(req.params.no).then((response)=>{
-        console.log(response);
-        res.render('jobcard',{response});
-        
-    })
-
-   
+        // console.log(response);
+        res.render('jobcard',{response});        
+    })   
 }

@@ -85,8 +85,8 @@ $("#jobcardForm").submit((e) => {
 // window.onbeforeunload = function () {
 //   window.scrollTo(0, 0);
 // }
-var stas_addItBtn=true;
 
+var stas_addItBtn=true;
 addItem = () => {  
  
   if(stas_addItBtn){
@@ -103,3 +103,4 @@ addItem = () => {
 
   
 }
+

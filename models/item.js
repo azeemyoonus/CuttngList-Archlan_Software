@@ -6,7 +6,8 @@ const Item = new Schema({
     Date: Date,
     SiteName: String,
         
-    Items: [{ItemName:String,
+    Items: [{
+        ItemName:String,
         Thickness: Number,
         Width: Number,
         Height: Number,
