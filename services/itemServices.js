@@ -8,15 +8,15 @@ exports.addItem = (details, jobNo) => {
         // let item = new Item(details);
         console.log("fromhere");
         console.log(details);
-         await Item.updateOne(
-            {JobCard: jobNo },
-            { $push: { Items: details } }            
+        await Item.updateOne(
+            { JobCard: jobNo },
+            { $push: { Items: details } }
         ).then((res) => {
             resolve(res);
         }).catch((err) => {
             reject(err);
         })
-      
+
     })
 
 }
@@ -61,25 +61,36 @@ exports.deleteItem = (id) => {
     })
 }
 
-exports.getTotalAmount = () => {
+exports.getTotalAmount = (id) => {
     return new Promise(async (resolve, reject) => {
-        total = await Item.aggregate([{
-
-            $group:
+        total = await Item.aggregate([
             {
-                _id: null,
-                total: { $sum: "$Amount" }
+                $match: { JobCard: parseInt(id) },
+            },
+
+            { $unwind: "$Items" },
+
+            {
+                $group:
+                {
+                    _id: null,
+                    total: { $sum: "$Items.Amount" }
+                }
             }
 
-        }]).exec((err, data) => {
+        ]).exec(async (err, data) => {
             if (err) reject(err);
-            else resolve(data[0].total);
+            else {
+                await Item.findOneAndUpdate({JobCard: parseInt(id)}, {TotalAmount:data[0].total.toFixed(3) });
+                resolve(data[0].total);
+                // console.log(data);
+            }
         });
     })
 }
 
-exports.getTottalSQFT=()=>{
-    return new Promise(async(resolve, reject)=>{
+exports.getTotalSQFT = (id) => {
+    return new Promise(async (resolve, reject) => {
         total = await Item.aggregate([{
 
             $group:
@@ -95,8 +106,8 @@ exports.getTottalSQFT=()=>{
     })
 }
 
-exports.addJobCard=(data)=>{
-    return new Promise(async (resolve, reject)=>{
+exports.addJobCard = (data) => {
+    return new Promise(async (resolve, reject) => {
         let item = new Item(data);
         await item.save().then((res) => {
             resolve(res);
@@ -106,14 +117,14 @@ exports.addJobCard=(data)=>{
     })
 }
 
-exports.getJobCardDetails=(cardNO)=>{
-    return new Promise(async (resolve, reject)=>{
-        Item.findOne({ JobCard: Number.parseInt(cardNO)}, function (err, doc){
-            if(!err){
+exports.getJobCardDetails = (cardNO) => {
+    return new Promise(async (resolve, reject) => {
+        Item.findOne({ JobCard: Number.parseInt(cardNO) }, function (err, doc) {
+            if (!err) {
                 // console.log(doc);
                 resolve(doc);
             }
             else reject(err);
-          });
+        });
     })
 }

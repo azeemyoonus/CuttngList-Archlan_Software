@@ -3,26 +3,34 @@ var generalServices = require('../services/generalService');
 const ExcelJS = require("exceljs");
 const router = require("../routes");
 
-exports.getAllItems = async (_req, res) => {
-    totalAmount = await itemservices.getTotalAmount();
-    totalAmountInWord = await generalServices.rupeesToWords(totalAmount);
-    totalSQFT = await itemservices.getTottalSQFT();
-    await itemservices.getAllItems().then((response) => {
+exports.getAllItems = async (req, res) => {
+    // totalAmount = await itemservices.getTotalAmount();
+    // totalAmountInWord = await generalServices.rupeesToWords(totalAmount);
+    // totalSQFT = await itemservices.getTottalSQFT();
+    
+
+    await itemservices.getAllItems().then((response) => {        
         // console.log(response);
-        needed= response[0].Items;
+        // needed = response[0].Items;
         // console.log(needed)
-        res.render("alljobcards", { response,needed, totalAmount, totalSQFT, totalAmountInWord });
+        res.render("alljobcards", {  response });
     });
 };
 
 exports.addItem = async (req, res) => {
     console.log(req.body);
-    data= req.body;
-    Item= {data};
+    data = req.body;
+    Item = { data };
     console.log(Item.data);
-    await itemservices.addItem(Item.data, req.params.no).then((response) => {
-        console.log(response);
-        res.redirect('/viewjobcard/'+req.params.no);
+    await itemservices.addItem(Item.data, req.params.no).then(async (response) => {
+        return await itemservices.getTotalAmount(req.params.no).then((response2) => {
+            //   return await itemservices.getTotalSQFT(req.params.no).then((response3)=>{
+            res.redirect('/viewjobcard/' + req.params.no);
+        })
+
+        //   })
+
+
     });
 };
 
@@ -116,7 +124,7 @@ exports.addNewJobCard = async (req, res) => {
     // console.log(req.body);
 
     await itemservices.addJobCard(req.body).then(() => {
-      res.redirect('/');
+        res.redirect('/');
     })
 
 }
@@ -125,17 +133,20 @@ exports.addNewJobCard = async (req, res) => {
 
 //     await itemservices.getJobCardDetails(req.body.jobCardNo).then((response)=>{
 //         console.log(response);
-       
+
 //         res.end();
 //         // res.render('jobcard',{response});
 //     })
 //     // res.redirect('/viewjobcard/'+req.body.jobCardNo);
 // }
 
-exports.viewJobCard=async(req, res)=>{
-    console.log(req.params.id);
-    await itemservices.getJobCardDetails(req.params.no).then((response)=>{
-        // console.log(response);
-        res.render('jobcard',{response});        
-    })   
+exports.viewJobCard = async (req, res) => {
+    console.log(req.params.no);
+
+    TotalAmount = await itemservices.getTotalAmount(req.params.no);
+    TotalamountInWords = await generalServices.rupeesToWords(TotalAmount);
+    await itemservices.getJobCardDetails(req.params.no).then((response) => {
+        console.log(response);
+        res.render('jobcard', { response , TotalamountInWords});
+    })
 }

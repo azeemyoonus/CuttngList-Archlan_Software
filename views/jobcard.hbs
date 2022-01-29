@@ -25,7 +25,7 @@
 
 
     <div class="card shadow-sm rounded  mx-2 mb-3 mt-4  border border-muted ">
-        <div class="rounded ">
+        <div class="card-body rounded ">
 
 
             <table id='itemTable' class="col-md-12  table  table-white border-secondary table-hover table-bordered  ">
@@ -42,7 +42,7 @@
                                     class="mx-auto btn btn-outline-primary">Add Item</button>
                                 <button onclick='downloadExcel()' type="submit  button"
                                     class="mx-auto btn btn-outline-primary">Download Excel</button>
-                                    
+
                             </div>
                         </th>
                     </tr>
@@ -90,20 +90,35 @@
 
                         </tr>
                         {{/each}}
-                        {{/with}}
-                        <tr>
+
+                        {{!-- <tr class="">
                             <th class="text-end" colspan="6">Total SQFT</th>
                             <th> {{totalSQFT}}</th>
-                            <th class="text-end" colspan="3">Total Amount <br>{{totalAmountInWord}} </th>
+                            <th class="text-end" colspan="3">Total Amount <br> </th>
                             <th>
-                                {{totalAmount}}
+                                {{TotalAmount}}
+                                {{../TotalamountInWords}}
                             </th>
                             <td> </td>
-                        </tr>
+                        </tr> --}}
+
 
                 </tbody>
 
             </table>
+
+            <div class="container row">
+
+
+                <div align='left' class=" col-md-12">
+                    <p class="  card-text"><b>Total Amount: </b> {{TotalAmount}} </p>
+                </div>
+                <div class="col-md-12">
+                    <p class=" text-lg card-text "><b>Total Amount in Words:</b> {{../TotalamountInWords}} </p>
+                </div>
+
+            </div>
+            {{/with}}
         </div>
     </div>
 
@@ -189,7 +204,8 @@
 
             <div class="row mx-1 mt-2 g-2">
                 <div class="col-md-8  form-floating mb-3 mt-3 ">
-                    <input type="text" class="form-control" name="ItemName" id="Item" value="{{Item}}" placeholder="Item">
+                    <input type="text" class="form-control" name="ItemName" id="Item" value="{{Item}}"
+                        placeholder="Item">
                     <label for="Item">Item</label>
                 </div>
                 <div class="col-md-4  form-floating mt-3 mb-3 ">
@@ -206,12 +222,12 @@
                     <label for="widthInput">Width</label>
                 </div>
                 <div class="col-md-3 form-floating mb-3">
-                    <input type="number" class="form-control heightInput" name="Height" id="heightInput" value="{{Height}}"
-                        placeholder="Height">
+                    <input type="number" class="form-control heightInput" name="Height" id="heightInput"
+                        value="{{Height}}" placeholder="Height">
                     <label for="heightInput">Height</label>
                 </div>
                 <div class="col-md-2 form-floating mb-3">
-                    <input type="number" class="form-control qtyInput"  name="QTY" id="qtyInput" value="{{QTY}}"
+                    <input type="number" class="form-control qtyInput" name="QTY" id="qtyInput" value="{{QTY}}"
                         placeholder="QTY">
                     <label for="qtyInput">Qty</label>
                 </div>
@@ -240,12 +256,13 @@
                     <label for="rateInput">Rate SQFT</label>
                 </div>
                 <div class="col-md-4 form-floating ">
-                    <input type="number" readonly class="form-control amountInput" name="Amount" value="{{Amount}}" id="amountInput"
-                        placeholder="Amount">
+                    <input type="number" readonly class="form-control amountInput" name="Amount" value="{{Amount}}"
+                        id="amountInput" placeholder="Amount">
                     <label for="amountInput">Amount</label>
                 </div>
             </div>
             <div align="center">
+                <button onclick='addItem()' type="button" class=" btn btn-primary">Cancel </button>
                 <button type="submit button" class=" btn btn-primary">Add Item</button>
             </div>
 

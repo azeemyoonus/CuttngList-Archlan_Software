@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Item = new Schema({
-    JobCard:Number,
+    JobCard: Number,
     Date: Date,
     SiteName: String,
-        
+
     Items: [{
-        ItemName:String,
+        ItemName: String,
         Thickness: Number,
         Width: Number,
         Height: Number,
@@ -16,8 +16,10 @@ const Item = new Schema({
         Remarks: String,
         Finish: String,
         RateSQFT: Number,
-        Amount: Number,}],
-    
+        Amount: Number,
+    }],
+    TotalAmount: Number,
+    TotalSQFT: Number,
     time: { type: Date, default: Date.now },
 },
     { collection: "Items" })
