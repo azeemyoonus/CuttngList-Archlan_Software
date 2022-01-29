@@ -6,9 +6,11 @@ var itemControllers = require('../controllers/itemControllers')
 router.get('/', itemControllers.getAllItems);
 // router.post('/addItem/:no', itemControllers.addItem);
 router.get('/downloadExcel',itemControllers.downloadExcel);
-router.get('/editItem/:id', itemControllers.editItem);
+// router.get('/editItem/:id', itemControllers.editItem);
 router.post('/updateItem/:id', itemControllers.updateItem);
-router.delete('/deleteItem/:id', itemControllers.deleteItem);
+
+// router.delete('/deleteItem/:id', itemControllers.deleteItem);
+
 router.get("/addNewJobCard", itemControllers.newJobCard);
 router.post("/addJobCard", itemControllers.addNewJobCard);
 // router.post("/getjobcard", itemControllers.getJobCard);

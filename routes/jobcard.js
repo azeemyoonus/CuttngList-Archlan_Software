@@ -8,4 +8,8 @@ router.get('/:no',itemControllers.viewJobCard );
 
 router.post('/addItem/:no', itemControllers.addItem);
 
+router.get('/editItem/:id', itemControllers.editItem);
+router.delete('/:no/deleteItem/:id', itemControllers.deleteItem);
+
+
 module.exports = router;

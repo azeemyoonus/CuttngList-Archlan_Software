@@ -37,11 +37,12 @@ function deleteItem(
   QTY,
   totalSQFT,
   RateSQFT,
-  Amount
+  Amount,
+  jobCardNO
 ) {
   if (
     confirm(
-      "Are You sure to delete the Item " +
+      "Are You sure to delete the Item: " +
       Item +
       ",with  Thickness:" +
       Thick +
@@ -59,8 +60,9 @@ function deleteItem(
       Amount
     )
   ) {
+    // +"&jobcard="+jobCardNO,
     $.ajax({
-      url: "/deleteItem/" + id,
+      url: "/viewjobcard/"+jobCardNO +"/deleteItem/" + id,
       method: "delete",
       success: (response) => {
         if (response.status == true) {
@@ -86,21 +88,35 @@ $("#jobcardForm").submit((e) => {
 //   window.scrollTo(0, 0);
 // }
 
-var stas_addItBtn=true;
-addItem = () => {  
- 
-  if(stas_addItBtn){
-  $("#addItemDiv").removeAttr('hidden');
-  var position = $('#addItemDiv').position();
-  position.top= position.top-90;
-  window.scrollTo(position);
-  stas_addItBtn= false;
-  }
-  else{
-    $("#addItemDiv").attr("hidden", true);
-    stas_addItBtn= true;
-  }
+var stas_addItBtn = true;
+addItem = () => {
 
-  
+  if (stas_addItBtn) {
+    $("#addItemDiv").removeAttr('hidden');
+    var position = $('#addItemDiv').position();
+    position.top = position.top - 90;
+    window.scrollTo(position);
+    stas_addItBtn = false;
+  }
+  else {
+    $("#addItemDiv").attr("hidden", true);
+    stas_addItBtn = true;
+  }
 }
 
+var stas_editItBtn = true;
+editItem = () => {
+
+  if (stas_editItBtn) {
+    $("#editItemDiv").removeAttr('hidden');
+    var position = $('#editItemDiv').position();
+    position.top = position.top - 90;
+    window.scrollTo(position);
+    stas_editItBtn = false;
+  }
+  else {
+    $("#editItemDiv").attr("hidden", true);
+    stas_editItBtn = true;
+  }
+
+}

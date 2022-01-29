@@ -109,8 +109,8 @@ exports.updateItem = async (req, res) => {
     })
 }
 exports.deleteItem = async (req, res) => {
-    console.log("hello");
-    await itemservices.deleteItem(req.params.id).then((response) => {
+    console.log(req.params);
+    await itemservices.deleteItem(req.params.no, req.params.id).then((response) => {
         console.log(response);
         res.json({ status: true });
     })
@@ -146,7 +146,7 @@ exports.viewJobCard = async (req, res) => {
     TotalAmount = await itemservices.getTotalAmount(req.params.no);
     TotalamountInWords = await generalServices.rupeesToWords(TotalAmount);
     await itemservices.getJobCardDetails(req.params.no).then((response) => {
-        console.log(response);
+        // console.log(response);
         res.render('jobcard', { response , TotalamountInWords});
     })
 }

@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 // var cors= require('cors')
 var connection = require('./config/connection')
-
 var indexRouter = require('./routes/index');
 var jobcardRouter = require('./routes/jobcard');
 
@@ -16,15 +15,10 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+// app.set('partial', path.join(__dirname, 'views/partials'));
+// hbs.registerPartials(__dirname + '/views/partials');
 
 
-var hbs = expressHbs.create({});
-
-// register new function
-hbs.handlebars.registerHelper('inc', function(index) {
-  index++;
-  return index;
-})
 
 app.use(logger('dev'));
 app.use(express.json());

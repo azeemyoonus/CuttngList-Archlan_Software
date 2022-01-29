@@ -51,13 +51,20 @@ exports.updateItem = (id, data) => {
     })
 }
 
-exports.deleteItem = (id) => {
+exports.deleteItem = (jobCardNo, itemId) => {
     return new Promise(async (resolve, reject) => {
-        await Item.findByIdAndRemove(id).then((res) => {
-            resolve(res)
-        }).catch((err) => {
-            reject(err)
-        })
+        await Item.findOneAndUpdate({JobCard:jobCardNo},{$pull:{Items:{_id:itemId}}}   ).then((res) => {
+                resolve(res)
+            }).catch((err) => {
+                reject(err)
+            })
+
+
+        // await Item.findByIdAndRemove(id).then((res) => {
+        //     resolve(res)
+        // }).catch((err) => {
+        //     reject(err)
+        // })
     })
 }
 
@@ -80,11 +87,14 @@ exports.getTotalAmount = (id) => {
 
         ]).exec(async (err, data) => {
             if (err) reject(err);
-            else {
-                await Item.findOneAndUpdate({JobCard: parseInt(id)}, {TotalAmount:data[0].total.toFixed(3) });
-                resolve(data[0].total);
-                // console.log(data);
+            else if(data.length!=0) {               
+                await Item.findOneAndUpdate({JobCard: parseInt(id)}, {TotalAmount:data[0].total.toFixed(3) }).then((res)=>{
+                    resolve(data[0].total)
+                }).catch((err)=>{
+                    reject(err);
+                })            
             }
+            else resolve(0);
         });
     })
 }
