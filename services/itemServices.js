@@ -6,6 +6,7 @@ exports.addItem = (details, jobNo) => {
     return new Promise(async (resolve, reject) => {
         // console.log(details);
         // let item = new Item(details);
+        console.log("adding");
         console.log("fromhere");
         console.log(details);
         await Item.updateOne(
@@ -31,40 +32,84 @@ exports.getAllItems = () => {
     })
 }
 
-exports.getAnItem = (id) => {
+exports.getAnItem = (jobCardNO, id) => {
     return new Promise(async (resolve, reject) => {
-        await Item.findById(id).then((res) => {
-            resolve(res)
+        console.log(id);
+        data = await Item.find(
+            { JobCard: parseInt(jobCardNO) },
+            {
+                Items: { $elemMatch: { _id: id } }
+            },
+            {
+                $project: {
+                    Items: 1,
+                    JobCard: 1
+                }
+            }
+
+
+        ).then((res) => {
+            const data = res[0].Items[0];
+            //    const finaldata={...data, jobcard: jobCardNO}
+            data["JobCard"] = jobCardNO;
+            console.log(data);
+            resolve(res[0].Items[0])
         }).catch((err) => {
             reject(err)
         })
     })
+
 }
 
-exports.updateItem = (id, data) => {
+exports.updateItem = (id, jobCardNo, data) => {
     return new Promise(async (resolve, reject) => {
-        await Item.findByIdAndUpdate(id, data).then((res) => {
-            resolve(res)
-        }).catch((err) => {
-            reject(err)
-        })
-    })
-}
+        console.log(data);
 
-exports.deleteItem = (jobCardNo, itemId) => {
-    return new Promise(async (resolve, reject) => {
-        await Item.findOneAndUpdate({JobCard:jobCardNo},{$pull:{Items:{_id:itemId}}}   ).then((res) => {
+        //     await this.deleteItem(jobCardNo, id).then(async(res) => {
+        //         return await this.addItem(data, jobCardNo)
+        //     }).then((res)=> {
+        //         resolve(res);
+        //     }).catch ((err) => {
+        //         reject(err)
+        //     })
+
+
+        // resolve(true);
+
+console.log(id, jobCardNo, data);
+
+        await Item.updateOne({ JobCard: parseInt(jobCardNo), "Items._id": mongoose.Types.ObjectId(id) },
+            {
+                $set: {
+                    "Items.$.ItemName": data.Item,
+                    "Items.$.Thickness": data.Thickness,
+                    "Items.$.width": data.width,
+                    "Items.$.Height": data.Height,
+                    "Items.$.QTY":data.QTY,
+                    "Items.$.TotalSQFT": data.TotalSQFT,
+                    "Items.$.Remarks": data.Remarks,
+                    "Items.$.RateSQFT": data.RateSQFT,
+                    "Items.$.Amount": data.Amount
+                }
+            }).then((res) => {
                 resolve(res)
+                console.log(res);
             }).catch((err) => {
                 reject(err)
             })
 
 
-        // await Item.findByIdAndRemove(id).then((res) => {
-        //     resolve(res)
-        // }).catch((err) => {
-        //     reject(err)
-        // })
+    })
+}
+
+exports.deleteItem = (jobCardNo, itemId) => {
+    return new Promise(async (resolve, reject) => {
+        console.log("deleting");
+        await Item.findOneAndUpdate({ JobCard: jobCardNo }, { $pull: { Items: { _id: itemId } } }).then((res) => {
+            resolve(res)
+        }).catch((err) => {
+            reject(err)
+        })
     })
 }
 
@@ -87,12 +132,12 @@ exports.getTotalAmount = (id) => {
 
         ]).exec(async (err, data) => {
             if (err) reject(err);
-            else if(data.length!=0) {               
-                await Item.findOneAndUpdate({JobCard: parseInt(id)}, {TotalAmount:data[0].total.toFixed(3) }).then((res)=>{
+            else if (data.length != 0) {
+                await Item.findOneAndUpdate({ JobCard: parseInt(id) }, { TotalAmount: data[0].total.toFixed(3) }).then((res) => {
                     resolve(data[0].total)
-                }).catch((err)=>{
+                }).catch((err) => {
                     reject(err);
-                })            
+                })
             }
             else resolve(0);
         });

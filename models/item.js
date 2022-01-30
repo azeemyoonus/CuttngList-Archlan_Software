@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Item = new Schema({
-    JobCard: Number,
+    JobCard: {
+        type: Number,
+        unique: true
+    },
     Date: Date,
     SiteName: String,
 

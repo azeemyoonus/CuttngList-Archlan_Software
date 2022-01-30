@@ -7,7 +7,7 @@ router.get('/', itemControllers.getAllItems);
 // router.post('/addItem/:no', itemControllers.addItem);
 router.get('/downloadExcel',itemControllers.downloadExcel);
 // router.get('/editItem/:id', itemControllers.editItem);
-router.post('/updateItem/:id', itemControllers.updateItem);
+// router.post('/updateItem/:id', itemControllers.updateItem);
 
 // router.delete('/deleteItem/:id', itemControllers.deleteItem);
 

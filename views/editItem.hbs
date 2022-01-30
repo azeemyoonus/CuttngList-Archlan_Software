@@ -1,20 +1,14 @@
-<div class="container-fluid bg-light">
-    <nav class=" navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <h1 class="navbar-brand" href="#">
-                <i class="bi bi-app"></i>
-                Archlan Builders
-            </h1>
-    </nav>
+<section  style="padding-top: 6em;padding-bottom:5em;" class=" container-fluid bg-light">
 
-    <div class="mt-3 border border-secondary rounded-top rounded-bottom  container  ">
+    <div class="card rounded mx-2 mb-2 mt-3  border border-muted   ">
         <p class="fs-3 text-center fw-light text-muted">Update Item </p>
         {{#with response}}
-        <form method="post" action='/updateItem/{{_id}}'>
+        <form method="post" action='/viewjobcard/updateItem/{{_id}}/{{../JobCardNO}}'>
 
-            <div class="row  mt-2 g-2">
+            <div class="row mx-1  mt-2 g-2">
                 <div class="col-md-8 form-floating mb-3 mt-3 ">
-                    <input type="text" class="form-control" name="Item" id="Item" value="{{Item}}" placeholder="Item">
+                    <input type="text" class="form-control" name="Item" id="Item" value="{{ItemName}}"
+                        placeholder="Item">
                     <label for="Item">Item</label>
                 </div>
                 <div class="col-md-4 form-floating mt-3 mb-3 ">
@@ -24,29 +18,29 @@
                 </div>
             </div>
 
-            <div class="row g-2">
+            <div class="row g-2 mx-1">
                 <div class="col-md-3 form-floating mb-3 ">
-                    <input type="number" class="form-control" name="Width" id="widthInput" value="{{Width}}"
+                    <input type="number" class="form-control widthInput" name="Width" id="" value="{{Width}}"
                         placeholder="Width">
                     <label for="widthInput">Width</label>
                 </div>
                 <div class="col-md-3 form-floating mb-3">
-                    <input type="number" class="form-control" name="Height" id="heightInput" value="{{Height}}"
+                    <input type="number" class="form-control heightInput" name="Height" id="" value="{{Height}}"
                         placeholder="Height">
                     <label for="heightInput">Height</label>
                 </div>
                 <div class="col-md-2 form-floating mb-3">
-                    <input type="number" class="form-control" name="QTY" id="qtyInput" value="{{QTY}}"
+                    <input type="number" class="form-control qtyInput" name="QTY" id="" value="{{QTY}}"
                         placeholder="QTY">
                     <label for="qtyInput">Qty</label>
                 </div>
                 <div class="col-md-4 form-floating mb-3">
-                    <input type="number" readonly class="form-control" name="TotalSQFT" id="totalSqftInput"
+                    <input type="number" readonly class="form-control totalSqftInput" name="TotalSQFT" id=""
                         value="{{TotalSQFT}}" placeholder="Total SQFT">
                     <label for="totalSqftInput">Total SQFT</label>
                 </div>
             </div>
-            <div class="row g-2">
+            <div class="row g-2 mx-1">
                 <div class="col-md-8 form-floating mb-3 ">
                     <input type="text" class="form-control" id="Remarks" name="Remarks" value="{{Remarks}}"
                         placeholder="Remarks">
@@ -58,19 +52,20 @@
                     <label for="Finish">Finish</label>
                 </div>
             </div>
-            <div class="row g-2">
+            <div class="row g-2 mx-1">
                 <div class="col-md-8 form-floating mb-3 ">
-                    <input type="number" class="form-control" name="RateSQFT" value="{{RateSQFT}}" id="rateInput"
+                    <input type="number" class="form-control rateInput" name="RateSQFT" value="{{RateSQFT}}" id=""
                         placeholder="Rate SQFT">
                     <label for="rateInput">Rate SQFT</label>
                 </div>
                 <div class="col-md-4 form-floating ">
-                    <input type="number" readonly class="form-control" name="Amount" value="{{Amount}}" id="amountInput"
+                    <input type="number" readonly class="form-control amountInput" name="Amount" value="{{Amount}}" id=""
                         placeholder="Amount">
                     <label for="amountInput">Amount</label>
                 </div>
             </div>
             <div align="center">
+                <a href='/viewjobcard/{{../JobCardNO}}' type=" button" class="text-white btn btn-primary">Cancel </a>
                 <button type="submit button" class=" btn btn-primary">Update</button>
             </div>
 
@@ -79,4 +74,4 @@
 
     </div>
 
-</div>
+</section>

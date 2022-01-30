@@ -8,7 +8,11 @@ router.get('/:no',itemControllers.viewJobCard );
 
 router.post('/addItem/:no', itemControllers.addItem);
 
-router.get('/editItem/:id', itemControllers.editItem);
+router.get('/editItem/:no/:cardNo', itemControllers.editItem);
+
+
+router.post('/updateItem/:id/:cardNo', itemControllers.updateItem);
+
 router.delete('/:no/deleteItem/:id', itemControllers.deleteItem);
 
 
