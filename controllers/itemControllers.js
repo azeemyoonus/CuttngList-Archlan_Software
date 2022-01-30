@@ -107,8 +107,10 @@ exports.newJobCard = (req, res) => {
 
 exports.addNewJobCard = async (req, res) => {
 
-    await itemservices.addJobCard(req.body).then(() => {
+    await itemservices.addJobCard(req.body).then((response) => {
         res.redirect('/');
+    }).catch((err)=>{
+       res.render('addJobCard', {message:"Cant Create Job Card, because you already created !"})
     })
 
 }
