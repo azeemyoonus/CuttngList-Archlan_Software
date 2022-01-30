@@ -25,7 +25,6 @@ $(".totalSqftInput").on("change paste keyup cut select", function () { findTotal
 
 
 function downloadExcel(jobcardNO) {
-
   window.location.href = "downloadExcel/" + jobcardNO;
 };
 
