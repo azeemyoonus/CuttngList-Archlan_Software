@@ -24,8 +24,9 @@ $(".rateInput").on("change paste keyup cut select", function () { findTotalAmoun
 $(".totalSqftInput").on("change paste keyup cut select", function () { findTotalAmount() });
 
 
-downloadExcel = () => {
-  window.location.href = "/downloadExcel";
+function downloadExcel(jobcardNO) {
+
+  window.location.href = "downloadExcel/" + jobcardNO;
 };
 
 function deleteItem(
@@ -59,10 +60,10 @@ function deleteItem(
       " and Amount: " +
       Amount
     )
-  ) {
-    // +"&jobcard="+jobCardNO,
+  )
+   {
     $.ajax({
-      url: "/viewjobcard/"+jobCardNO +"/deleteItem/" + id,
+      url: "/viewjobcard/" + jobCardNO + "/deleteItem/" + id,
       method: "delete",
       success: (response) => {
         if (response.status == true) {
@@ -88,9 +89,13 @@ $("#jobcardForm").submit((e) => {
 //   window.scrollTo(0, 0);
 // }
 
+
+
 var stas_addItBtn = true;
 addItem = () => {
 
+  
+  
   if (stas_addItBtn) {
     $("#addItemDiv").removeAttr('hidden');
     var position = $('#addItemDiv').position();

@@ -3,9 +3,7 @@ var objectid = require('mongodb').ObjectID;
 var mongoose = require('mongoose');
 
 exports.addItem = (details, jobNo) => {
-    return new Promise(async (resolve, reject) => {
-        // console.log(details);
-        // let item = new Item(details);
+    return new Promise(async (resolve, reject) => {    
         console.log("adding");
         console.log("fromhere");
         console.log(details);
@@ -49,8 +47,7 @@ exports.getAnItem = (jobCardNO, id) => {
 
 
         ).then((res) => {
-            const data = res[0].Items[0];
-            //    const finaldata={...data, jobcard: jobCardNO}
+            const data = res[0].Items[0];            
             data["JobCard"] = jobCardNO;
             console.log(data);
             resolve(res[0].Items[0])
@@ -62,22 +59,7 @@ exports.getAnItem = (jobCardNO, id) => {
 }
 
 exports.updateItem = (id, jobCardNo, data) => {
-    return new Promise(async (resolve, reject) => {
-        console.log(data);
-
-        //     await this.deleteItem(jobCardNo, id).then(async(res) => {
-        //         return await this.addItem(data, jobCardNo)
-        //     }).then((res)=> {
-        //         resolve(res);
-        //     }).catch ((err) => {
-        //         reject(err)
-        //     })
-
-
-        // resolve(true);
-
-console.log(id, jobCardNo, data);
-
+    return new Promise(async (resolve, reject) => {      
         await Item.updateOne({ _id: parseInt(jobCardNo), "Items._id": mongoose.Types.ObjectId(id) },
             {
                 $set: {
@@ -85,7 +67,7 @@ console.log(id, jobCardNo, data);
                     "Items.$.Thickness": data.Thickness,
                     "Items.$.width": data.width,
                     "Items.$.Height": data.Height,
-                    "Items.$.QTY":data.QTY,
+                    "Items.$.QTY": data.QTY,
                     "Items.$.TotalSQFT": data.TotalSQFT,
                     "Items.$.Remarks": data.Remarks,
                     "Items.$.RateSQFT": data.RateSQFT,
@@ -105,7 +87,7 @@ console.log(id, jobCardNo, data);
 exports.deleteItem = (jobCardNo, itemId) => {
     return new Promise(async (resolve, reject) => {
         console.log("deleting");
-        await Item.findOneAndUpdate({ JobCard: jobCardNo }, { $pull: { Items: { _id: itemId } } }).then((res) => {
+        await Item.findOneAndUpdate({ _id: parseInt(jobCardNo) }, { $pull: { Items: { _id: itemId } } }).then((res) => {
             resolve(res)
         }).catch((err) => {
             reject(err)
@@ -139,7 +121,13 @@ exports.getTotalAmount = (id) => {
                     reject(err);
                 })
             }
-            else resolve(0);
+        else {
+            await Item.findOneAndUpdate({ _id: parseInt(id) }, { TotalAmount: 0 }).then((res) => {
+                resolve(0)
+            }).catch((err) => {
+                reject(err);
+            })}
+
         });
     })
 }
@@ -175,11 +163,18 @@ exports.addJobCard = (data) => {
 exports.getJobCardDetails = (cardNO) => {
     return new Promise(async (resolve, reject) => {
         Item.findOne({ _id: Number.parseInt(cardNO) }, function (err, doc) {
-            if (!err) {
-                // console.log(doc);
-                resolve(doc);
+            if (doc==null) {              
+                reject({message: "No JobCard Found"})
             }
-            else reject(err);
+            else if (!err){
+                
+                console.log([doc]);
+                resolve([doc]);
+            }
+            else {
+                console.log(err);
+                reject(err);
+            }
         });
     })
 }

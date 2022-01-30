@@ -10,6 +10,7 @@ router.post('/addItem/:no', itemControllers.addItem);
 
 router.get('/editItem/:no/:cardNo', itemControllers.editItem);
 
+router.get('/downloadExcel/:no',itemControllers.downloadExcel);
 
 router.post('/updateItem/:id/:cardNo', itemControllers.updateItem);
 
