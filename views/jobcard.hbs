@@ -5,7 +5,7 @@
     <div class="card rounded mx-2 mb-3 mt-4  border border-muted ">
 
         <div class="card-body">
-            <h5 class="card-title">Job Card No: {{JobCard}} </h5>
+            <h5 class="card-title">Job Card No: {{_id}} </h5>
             <div class="row">
 
                 <div class="col-md-6">
@@ -81,9 +81,9 @@
                             <td>{{RateSQFT}}</td>
                             <td>{{Amount}}</td>
                             <td style="display: flex;">
-                                <a  href="editItem/{{_id}}/{{../JobCard}}" type=" button" class="mx-auto btn btn-outline-primary"><i
+                                <a  href="editItem/{{_id}}/{{../_id}}" type=" button" class="mx-auto btn btn-outline-primary"><i
                                         class="bi bi-pen"></i></a>
-                                <a onclick="deleteItem('{{_id}}','{{ItemName}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}', {{../JobCard}})"
+                                <a onclick="deleteItem('{{_id}}','{{ItemName}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}', {{../_id}})"
                                     type="button" class="ms-1 btn btn-outline-primary"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
@@ -111,86 +111,10 @@
         </div>
     </div>
 
-{{!-- {{>editItem}} --}}
-
-    <div hidden id="editItemDiv" class="card rounded mx-2 mb-2 mt-3  border border-muted   ">
-        <p class=" fs-3 text-center mt-3 fw-light text-muted">Update Item </p>
-        {{#with response}}
-        <form method="post" action='/updateItem/{{_id}}'>
-
-            <div class="row  mt-2 g-2">
-                <div class="col-md-8 form-floating mb-3 mt-3 ">
-                    <input type="text" class="form-control" name="Item" id="Item" value="{{Item}}" placeholder="Item">
-                    <label for="Item">Item</label>
-                </div>
-                <div class="col-md-4 form-floating mt-3 mb-3 ">
-                    <input type="number" class="form-control" name="Thickness" id="thickness" value="{{Thickness}}"
-                        placeholder="Thickness">
-                    <label for="thickness">Thickness</label>
-                </div>
-            </div>
-
-            <div class="row g-2">
-                <div class="col-md-3 form-floating mb-3 ">
-                    <input type="number" class="form-control" name="Width" id="widthInput" value="{{Width}}"
-                        placeholder="Width">
-                    <label for="widthInput">Width</label>
-                </div>
-                <div class="col-md-3 form-floating mb-3">
-                    <input type="number" class="form-control" name="Height" id="heightInput" value="{{Height}}"
-                        placeholder="Height">
-                    <label for="heightInput">Height</label>
-                </div>
-                <div class="col-md-2 form-floating mb-3">
-                    <input type="number" class="form-control" name="QTY" id="qtyInput" value="{{QTY}}"
-                        placeholder="QTY">
-                    <label for="qtyInput">Qty</label>
-                </div>
-                <div class="col-md-4 form-floating mb-3">
-                    <input type="number" readonly class="form-control" name="TotalSQFT" id="totalSqftInput"
-                        value="{{TotalSQFT}}" placeholder="Total SQFT">
-                    <label for="totalSqftInput">Total SQFT</label>
-                </div>
-            </div>
-            <div class="row g-2">
-                <div class="col-md-8 form-floating mb-3 ">
-                    <input type="text" class="form-control" id="Remarks" name="Remarks" value="{{Remarks}}"
-                        placeholder="Remarks">
-                    <label for="Item">Remarks</label>
-                </div>
-                <div class="col-md-4 form-floating ">
-                    <input type="text" class="form-control" id="Finish" name="Finish" value="{{Finish}}"
-                        placeholder="Finish">
-                    <label for="Finish">Finish</label>
-                </div>
-            </div>
-            <div class="row g-2">
-                <div class="col-md-8 form-floating mb-3 ">
-                    <input type="number" class="form-control" name="RateSQFT" value="{{RateSQFT}}" id="rateInput"
-                        placeholder="Rate SQFT">
-                    <label for="rateInput">Rate SQFT</label>
-                </div>
-                <div class="col-md-4 form-floating ">
-                    <input type="number" readonly class="form-control" name="Amount" value="{{Amount}}" id="amountInput"
-                        placeholder="Amount">
-                    <label for="amountInput">Amount</label>
-                </div>
-            </div>
-            <div align="center">
-                <button onclick='editItem()' type="button" class=" btn btn-primary">Cancel </button>
-                <button type="submit button" class=" btn btn-primary">Update</button>
-            </div>
-
-        </form>
-        {{/with}}
-
-    </div>
-
-
     <div id="addItemDiv" hidden class="card rounded mx-2 mb-2 mt-3  border border-muted   ">
         <p class=" fs-3 text-center mt-3 fw-light text-muted">Add Item </p>
         {{#with response}}
-        <form id="addItemForm" method="post" class="" action='addItem/{{JobCard}}'>
+        <form id="addItemForm" method="post" class="" action='addItem/{{_id}}'>
 
             <div class="row mx-1 mt-2 g-2">
                 <div class="col-md-8  form-floating mb-3 mt-3 ">

@@ -10,7 +10,7 @@ exports.addItem = (details, jobNo) => {
         console.log("fromhere");
         console.log(details);
         await Item.updateOne(
-            { JobCard: jobNo },
+            { _id: jobNo },
             { $push: { Items: details } }
         ).then((res) => {
             resolve(res);
@@ -36,7 +36,7 @@ exports.getAnItem = (jobCardNO, id) => {
     return new Promise(async (resolve, reject) => {
         console.log(id);
         data = await Item.find(
-            { JobCard: parseInt(jobCardNO) },
+            { _id: parseInt(jobCardNO) },
             {
                 Items: { $elemMatch: { _id: id } }
             },
@@ -78,7 +78,7 @@ exports.updateItem = (id, jobCardNo, data) => {
 
 console.log(id, jobCardNo, data);
 
-        await Item.updateOne({ JobCard: parseInt(jobCardNo), "Items._id": mongoose.Types.ObjectId(id) },
+        await Item.updateOne({ _id: parseInt(jobCardNo), "Items._id": mongoose.Types.ObjectId(id) },
             {
                 $set: {
                     "Items.$.ItemName": data.Item,
@@ -117,7 +117,7 @@ exports.getTotalAmount = (id) => {
     return new Promise(async (resolve, reject) => {
         total = await Item.aggregate([
             {
-                $match: { JobCard: parseInt(id) },
+                $match: { _id: parseInt(id) },
             },
 
             { $unwind: "$Items" },
@@ -133,7 +133,7 @@ exports.getTotalAmount = (id) => {
         ]).exec(async (err, data) => {
             if (err) reject(err);
             else if (data.length != 0) {
-                await Item.findOneAndUpdate({ JobCard: parseInt(id) }, { TotalAmount: data[0].total.toFixed(3) }).then((res) => {
+                await Item.findOneAndUpdate({ _id: parseInt(id) }, { TotalAmount: data[0].total.toFixed(3) }).then((res) => {
                     resolve(data[0].total)
                 }).catch((err) => {
                     reject(err);
@@ -174,7 +174,7 @@ exports.addJobCard = (data) => {
 
 exports.getJobCardDetails = (cardNO) => {
     return new Promise(async (resolve, reject) => {
-        Item.findOne({ JobCard: Number.parseInt(cardNO) }, function (err, doc) {
+        Item.findOne({ _id: Number.parseInt(cardNO) }, function (err, doc) {
             if (!err) {
                 // console.log(doc);
                 resolve(doc);

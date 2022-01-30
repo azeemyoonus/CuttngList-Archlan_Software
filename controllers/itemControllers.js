@@ -4,7 +4,7 @@ const ExcelJS = require("exceljs");
 const router = require("../routes");
 
 exports.getAllItems = async (req, res) => {
-    await itemservices.getAllItems().then((response) => {
+    await itemservices.getAllItems().then((response) => {        
         res.render("alljobcards", { response });
     });
 };
@@ -113,8 +113,7 @@ exports.addNewJobCard = async (req, res) => {
 
 }
 
-exports.viewJobCard = async (req, res) => {
-
+exports.viewJobCard = async (req, res) => {   
     TotalAmount = await itemservices.getTotalAmount(req.params.no);
     TotalamountInWords = await generalServices.rupeesToWords(TotalAmount);
     await itemservices.getJobCardDetails(req.params.no).then((response) => {
