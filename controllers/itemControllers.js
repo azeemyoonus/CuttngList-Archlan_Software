@@ -270,6 +270,7 @@ exports.deleteItem = async (req, res) => {
 
 exports.newJobCard = (req, res) => {
     res.render('addJobCard');
+    // res.render('jobcard');
 }
 
 exports.addNewJobCard = async (req, res) => {

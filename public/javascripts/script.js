@@ -23,6 +23,10 @@ $(".heightInput").on("change paste keyup cut select", function () { findTotalSqf
 $(".rateInput").on("change paste keyup cut select", function () { findTotalAmount() });
 $(".totalSqftInput").on("change paste keyup cut select", function () { findTotalAmount() });
 
+$(".qtyInput").on("change paste keyup cut select", function () { findTotalAmount() });
+$(".widthInput").on("change paste keyup cut select", function () { findTotalAmount() });
+$(".heightInput").on("change paste keyup cut select", function () { findTotalAmount() });
+
 
 function downloadExcel(jobcardNO) {
   window.location.href = "downloadExcel/" + jobcardNO;
@@ -91,22 +95,22 @@ $("#jobcardForm").submit((e) => {
 
 
 var stas_addItBtn = true;
-addItem = () => {
+// addItem = () => {
 
   
   
-  if (stas_addItBtn) {
-    $("#addItemDiv").removeAttr('hidden');
-    var position = $('#addItemDiv').position();
-    position.top = position.top - 90;
-    window.scrollTo(position);
-    stas_addItBtn = false;
-  }
-  else {
-    $("#addItemDiv").attr("hidden", true);
-    stas_addItBtn = true;
-  }
-}
+//   if (stas_addItBtn) {
+//     $("#addItemDiv").removeAttr('hidden');
+//     var position = $('#addItemDiv').position();
+//     position.top = position.top - 90;
+//     window.scrollTo(position);
+//     stas_addItBtn = false;
+//   }
+//   else {
+//     $("#addItemDiv").attr("hidden", true);
+//     stas_addItBtn = true;
+//   }
+// }
 
 var stas_editItBtn = true;
 editItem = () => {
@@ -124,3 +128,20 @@ editItem = () => {
   }
 
 }
+
+function cancelAddItem(){
+
+  $("#itemInput").val('');
+  $("#thicknessInput").val('');
+  $("#widthInput").val('');
+  $("#thickInput").val('');
+  $("#heightInput").val('');
+  $("#qtyInput").val('');
+  $("#totalSqftInput").val('');
+  $("#remarksInput").val('');
+  $("#finishInput").val('');
+  $("#rateInput").val('');
+  $("#amountInput").val('');
+
+}
+

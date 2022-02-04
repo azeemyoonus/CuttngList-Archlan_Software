@@ -2,14 +2,15 @@
 
 <head>
   <title>Archlan</title>
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-{{!-- <script type="module" src="/node_modules/popups/dist/popupS.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/node_modules/popups/css/popupS.min.css">
-<link rel="stylesheet" href="/node_modules/popups/css/popupS.css">
-  
-</link> --}}
+  {{!--
+  <script type="module" src="/node_modules/popups/dist/popupS.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/node_modules/popups/css/popupS.min.css">
+  <link rel="stylesheet" href="/node_modules/popups/css/popupS.css">
+
+  </link> --}}
 
   {{!-- cdn vanilla datepicker --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css" />
@@ -30,7 +31,8 @@
 
         <div class="">
           <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <a style="color: black;" class="underline   navbar-brand" href="/"><img class="img-fluid " src="/images/logo.jpg"width="170" height="100"   >  </a>
+            <a style="color: black;" class="underline   navbar-brand" href="/"><img class="img-fluid "
+                src="/images/logo.jpg" width="170" height="100"> </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -40,23 +42,20 @@
               <ul class="ms-auto nav  navbar-nav  ">
 
                 <form action="/getjobcard" method="post" id="jobcardForm" class="d-flex">
-                  <input id="jobNoInput" class="form-control me-2 text-wrap" value="" name="jobCardNo" type="search" placeholder="Job Card Number" aria-label="Search">
-                  <button id="jobSearchBtn" class="btn btn-outline-success text-wrap"  type="submit">Search </button>
+                  <input id="jobNoInput" class="form-control me-2 text-wrap" value="" name="jobCardNo" type="search"
+                    placeholder="Job Card Number" aria-label="Search">
+                  <button id="jobSearchBtn" class="btn btn-outline-success text-wrap" type="submit">Search </button>
                 </form>
 
 
                 <li class="nav-item   ">
-                  <a style="color: black; font-size: medium;" class="ml-1 nav-link  underline under  "
-                    href="/"><i class="bi bi-file-earmark-text"></i> Job Cards</a>
+                  <a style="color: black; font-size: medium;" class="ml-1 nav-link  underline under  " href="/"><i
+                      class="bi bi-file-earmark-text"></i> Job Cards</a>
                 </li>
                 <li class=" nav-item">
                   <a style="color: black; font-size: medium;" class="ml-1 nav-link underline under "
                     href="/addNewJobCard"><i class="bi bi-file-earmark-plus"></i> Job Card</a>
                 </li>
-                {{!-- <li class=" nav-item">
-                  <a style="color: black; font-size: medium;" class="ml-1 nav-link underline under "
-                    href="#contact">Contact</a>
-                </li> --}}
               </ul>
             </div>
 
@@ -108,11 +107,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script> --}}
 
   <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker.min.js"></script>
-  <footer class="bg-light text-bottom     text-center " style="padding-top:0em;">
+  <footer class="bg-light text-bottom text-center " style=" bottom: 0%; position: fixed; width: 100%;">
     <hr class='text-secondary'>
 
 
-    </div>
     <div class="pt-0 container text-center">
       <div class="pt-0">
         <a class="pb-0 " href="https://github.com/azeemyoonus" target="_blank"><svg xmlns="http://www.w3.org/2000/svg"

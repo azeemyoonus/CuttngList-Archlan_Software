@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const connectionUrl = 'mongodb+srv://azeemyoonus:Azeem%4012@cluster0.iee5t.mongodb.net/Archlan?retryWrites=true&w=majority';
+const connectionUrl = process.env.DB_CONN_STR;
 
 module.exports.dbConnect = (done) => {
     mongoose.connect(connectionUrl, {
