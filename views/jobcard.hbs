@@ -2,32 +2,94 @@
 
     {{#with response}}
 
-    <div class="card rounded mx-2 mb-3 mt-4  border border-muted ">
+    <div id="mainCardDiv" class="card rounded mx-2 mb-2 mt-4  border border-muted ">
+        <div id="cardBodyDiv" class="card-body">
+            <form id="jobcardForm1" class="row">
+                <div>
+                    <div class="row ">
+                        <label for="jobcardInput" class="fw-bold col-md-2 col-form-label">Job Card No:</label>
+                        <div class="col-md-3">
+                            <input disabled required name="_id" type="number" class="form-control" id="jobcardInput" value="{{_id}}"
+                                placeholder="JobCard Number">
+                        </div>
+                    </div>
 
-        <div class="card-body">
-            <h5 class="card-title">Job Card No: {{_id}} </h5>
-            <div class="row">
 
-                <div class="col-md-6">
-                    <p style="display: inline;" class=" text-lg card-text "><b>Site Name:</b> {{SiteName}} </p>
+                    <div class="row mt-1">
+                        <label for="clientNameInput" class="fw-bold col-md-2 col-form-label">Client Name</label>
+                        <div class="col-md-3">
+                            <input required type="text" name="ClientName" class="form-control" value="{{ClientName}}" id="clientNameInput"
+                                placeholder="Client Name">
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col ">
+
+
+                            <div class=" row  mt-1">
+                                <label for="siteNameInput" class="fw-bold col-md-2 col-form-label">Site Name</label>
+                                <div class="col-md-3">
+                                    <input required type="text" name="SiteName" value="{{SiteName}}" class="form-control"
+                                        id="siteNameInput" placeholder="Site Name">
+                                </div>
+
+
+                                <label for="dateInput"
+                                    class="ms-auto fw-bold text-end col-md-1 col-form-label">Date</label>
+                                <div class="col-md-2">
+                                    <input required type="date" name="Date" value="{{Date}}" class="form-control" id="dateInput"
+                                        placeholder="Date">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div class="row ">
+                        <div class="col ">
+
+
+                            <div class="row mt-1">
+                                <label for="clentPhoneInput" class="fw-bold col-md-2 col-form-label">Client
+                                    Phone:</label>
+                                <div class="col-md-3">
+                                    <input required type="number" name="ClientPhone" value="{{ClientPhone}}" class="form-control"
+                                        id="clentPhoneInput" placeholder="Client Phone Number">
+                                </div>
+
+
+                                <label for="deliveryDateInput"
+                                    class="ms-auto fw-bold col-md-2 text-end col-form-label">Delivery
+                                    Date</label>
+                                <div class="col-md-2">
+                                    <input required type="date" name="DeliveryDate" value="{{DeliveryDate}}" class="form-control"
+                                        id="deliveryDateInput" placeholder="Delivery Date">
+                                </div>
+                            </div>
+
+                        </div>
+                        {{!-- <button id="addItemBtn" type="submit" class=" btn btn-primary">Add Job Card</button> --}}
+                    </div>
+                    {{!-- <div align='right' class="mt-2 col-12">
+                        <button type="submit" class="btn btn-primary">Create Job Card</button>
+                    </div> --}}
                 </div>
-                <div align='right' class=" col-md-6">
-                    <p class="ms-auto  card-text"><b>Date: </b> {{Date}} </p>
-                </div>
 
-            </div>
-
+               
+            </form> 
         </div>
+
     </div>
 
-    {{/with}}
 
 
 
-    <div class="card shadow-sm rounded  mx-2 mb-3 mt-4  border border-muted ">
-        <div class="card-body rounded ">
-
-
+    <div id="mainitemsDiv" style="position: relative;"
+        class="card shadow-sm rounded  mx-0 mb-3 mt-4  border border-muted ">
+        <div id="itemsDiv" class="card-body rounded ">
             <table id='itemTable' class="col-md-12  table  table-white border-secondary table-hover table-bordered  ">
                 <thead class="bg-dark text-white">
                     <tr>
@@ -36,13 +98,14 @@
                         <th colspan='3'>
                             <center>All Size in MM</center>
                         </th>
-                          {{#with response }}
-                        <th colspan='7'>
+
+                        <th colspan='8'>
                             <div align='right' class="p-2">
-                                <button id="addItemBtn" onclick='addItem()' type="submit  button"
-                                    class="mx-auto btn btn-outline-primary">Add Item</button>
-                                <button onclick='downloadExcel({{_id}})' type="submit  button"
-                                    class="mx-auto btn btn-outline-primary">Download Excel</button>
+                                {{!-- <button id="addItemBtn" onclick='addItem()' type="submit  button"
+                                    class="mx-auto btn btn-outline-primary">Add Item</button> --}}
+                                <button onclick="downloadExcel({{_id}})" type="button"
+                                    class="mx-auto btn btn-outline-primary">Print
+                                </button>
 
                             </div>
                         </th>
@@ -50,141 +113,200 @@
 
                     <tr>
                         <th style="width: 1%;">SL</th>
-                        <th style="width: 15%;">Item</th>
-                        <th style="width: 5%;">Thickness</th>
-                        <th style="width: 5%;">Width</th>
-                        <th style="width: 5%;">Height</th>
-                        <th style="width: 5%;">QTY</th>
-                        <th style="width: 7%;">TOTAL SQ.FT</th>
-                        <th style="width: 15%;">REMARKS</th>
+                        <th style="width: 20%;">Item</th>
+                        <th style="width: 2%;">Thick<br>ness</th>
+                        <th style="width: 2%;">Width</th>
+                        <th style="width: 1%;">Hei<br>ght</th>
+                        <th style="width: 2%;">QTY</th>
+                        <th style="width: 15%;">TOTAL SQ.FT</th>
+                        <th style="width: 20%;">REMARKS</th>
                         <th style="width: 10%;">FINISH</th>
                         <th style="width: 10%;">RATE-SQFT</th>
-                        <th style="width: 10%;">Amount</th>
-                        <th style="width: 4px;%;">Update</th>
-                       
+                        <th style="width: 25%;">Amount</th>
+                        <th style="width: 4px;%;">Action</th>
                     </tr>
 
                 </thead>
                 <tbody id='itemTableBody'>
-                  
+                    {{!-- {{#with response}} --}}
                     {{#each Items}}
-                
-                        <tr>
-                            <td id="serialNO"></td>
-                            <td> {{ItemName}}</td>
-                            <td>{{Thickness}}</td>
-                            <td>{{Width}}</td>
-                            <td>{{Height}}</td>
-                            <td>{{QTY}}</td>
-                            <td>{{TotalSQFT}}</td>
-                            <td>{{Remarks}}</td>
-                            <td>{{Finish}}</td>
-                            <td>{{RateSQFT}}</td>
-                            <td>{{Amount}}</td>
-                            <td style="display: flex;">
-                                <a  href="editItem/{{_id}}/{{../_id}}" type=" button" class="mx-auto btn btn-outline-primary"><i
-                                        class="bi bi-pen"></i></a>
-                                <a onclick="deleteItem('{{_id}}','{{ItemName}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}', {{../_id}})"
-                                    type="button" class="ms-1 btn btn-outline-primary"><i class="bi bi-trash"></i></a>
-                            </td>
-                        </tr>
 
-                        </tr>
-                        {{/each}}
+                    <tr class="rowlink">
+                        <td id="serialNO"></td>
+                        <td> {{ItemName}}</td>
+                        <td>{{Thickness}}</td>
+                        <td>{{Width}}</td>
+                        <td>{{Height}}</td>
+                        <td>{{QTY}}</td>
+                        <td>{{TotalSQFT}}</td>
+                        <td>{{Remarks}}</td>
+                        <td>{{Finish}}</td>
+                        <td>{{RateSQFT}}</td>
+                        <td>{{Amount}}</td>
+                        <td>
+                            <button id="editItemBtn" onclick="editItem('{{_id}}')" class="dropdown-toggle btn border border-secondary">Edit</button>
+                            <a hidden href=''  type="button" class="mx-auto btn btn-outline-primary">Edit</a>
+                            {{!-- <a href="editItem/{{_id}}/{{../_id}}" type=" button"
+                                class="mx-auto btn btn-outline-primary"><i class="bi bi-pen"></i></a>
+                            <a onclick="deleteItem('{{_id}}','{{ItemName}}','{{Thickness}}','{{width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}', {{../_id}})"
+                                type="button" class="ms-1 btn btn-outline-primary"><i class="bi bi-trash"></i></a> --}}
+                        </td>
+                    </tr>
+                    <tr hidden class="bg-light bg-gradient" id="editFormRow{{_id}}"  >
+                        <th colspan="12">
+                        <form id="editItemForm" method="post" action='/viewjobcard/updateItem/{{_id}}/{{../_id}}' class="row g-1">                           
+                            <div style="width: 15%;" class="col-md-2">
+                                <label for="itemInput" class="form-label">Item Name</label>
+                                <input required value="{{ItemName}}" type="text" name="ItemName" class="form-control" id="itemInput">
+                            </div>
+                            <div style="width: 8%;" class="col-md-1 ">
+                                <label for="thickInput" class="form-label">Thickness</label>
+                                <input required type="number" value="{{Thickness}}" name="Thickness" class="form-control thickInput"
+                                    id="thickInput">
+                            </div>
+                            <div style="width: 8%;" class="col-md-1">
+                                <label for="widthInput" class="form-label">Width</label>
+                                <input required type="number" value="{{Width}}" name="Width" class="form-control widthInput"
+                                    id="widthInput">
+                            </div>
+                            <div style="width: 8%;" class="col-md-1 ">
+                                <label for="heightInput" class="form-label">Height</label>
+                                <input required type="number" value="{{Height}}" name="Height" class="form-control heightInput"
+                                    id="heightInput">
+                            </div>
+                            <div style="width: 8%;" class="col-md-1 ">
+                                <label for="qtyInput" class="form-label">QTY</label>
+                                <input required type="number" value="{{QTY}}" name="QTY" class="form-control qtyInput" id="qtyInput">
+                            </div>
+                            <div style="width: 10%;" class="col-md-1">
+                                <label for="totalSqftInput" class="form-label">Total SQFT</label>
+                                <input readonly type="number" value="{{TotalSQFT}}" name="TotalSQFT" class="form-control totalSqftInput"
+                                    id="totalSqftInput">
+                            </div>
+                            <div style="width: 12%;" class="col-md-2">
+                                <label for="remarksInput" class="form-label">Remarks</label>
+                                <input required type="text" name="Remarks" value="{{Remarks}}" class="form-control" id="remarksInput">
+                            </div>
+
+                            <div style="width: 10%;" class="col-md-2">
+                                <label for="finishInput" class="form-label">Finish</label>
+                                <input required type="text" name="Finish" value="{{Finish}}" class="form-control" id="finishInput">
+                            </div>
+                            <div style="width: 10%;" class="col-md-1">
+                                <label for="rateInput" class="form-label">Rate SQFT</label>
+                                <input required type="number" value="{{RateSQFT}}" name="RateSQFT" class="form-control rateInput"
+                                    id="rateInput">
+                            </div>
+                            <div style="width: 10%;" class="col-md-2">
+                                <label for="amountInput" class="form-label">Amount</label>
+                                <input readonly type="number" value="{{Amount}}" name="Amount" class="form-control amountInput"
+                                    id="amountInput">
+                            </div>
+
+                            <div align="right" class="mt-2">
+                                <button onclick='cancelEditItem()' type="button" class=" btn bg-light border border-primary  text-primary">Delete This Item
+                                </button>
+                                
+                                <button id="updateItemBtn" type="button submit" class=" btn bg-light border border-primary  text-primary">Update Item</button>
+                            </div>
+
+                        </form>
+                        </td>
+
+                    </th>
+                    {{/each}}
+                    <tr>
+                        <th class="ms-1" colspan="6">TOTAL </th>
+                        {{!-- <td colspan="4"> </td> --}}
+                        <th colspan="1"> </th>
+                        <td colspan="3"> </td>
+                        <th colspan="1"> {{TotalAmount}} </th>
+                        <th colspan="1"> </th>
+                    </tr>
+
 
                 </tbody>
 
             </table>
 
-            <div class="container row">
+            <div class="card rounded mx-0 mb-2 mt-3  border border-muted ">
+                <div class="card-body row g-1">
+                    {{!-- action='addItem/{{_id}} --}}
+                    <form id="addItemForm" method="post" action='addItem/{{_id}}' class="row g-1">
+                        {{!-- <input hidden value="{{_id}}" name="forID"> --}}
+                        <div style="width: 15%;" class="col-md-2">
+                            <label for="itemInput1" class="form-label">Item Name</label>
+                            <input required type="text" name="ItemName" class="form-control" id="itemInput1">
+                        </div>
+                        <div style="width: 8%;" class="col-md-1 ">
+                            <label for="thickInput1" class="form-label">Thickness</label>
+                            <input required type="number" name="Thickness" class="form-control thickInput1"
+                                id="thickInput1">
+                        </div>
+                        <div style="width: 8%;" class="col-md-1">
+                            <label for="widthInput1" class="form-label">Width</label>
+                            <input required type="number" name="Width" id="widthInput1" class="form-control widthInput1">
+                        </div>
+                        <div style="width: 8%;" class="col-md-1 ">
+                            <label for="heightInput1" class="form-label">Height</label>
+                            <input required type="number" id="heightInput1" name="Height" class="form-control heightInput1"
+                               >
+                        </div>
+                        <div style="width: 8%;" class="col-md-1 ">
+                            <label for="qtyInput" class="form-label">QTY</label>
+                            <input required type="number" id="qtyInput" name="QTY" class="form-control qtyInput1" >
+                        </div>
+                        <div style="width: 10%;" class="col-md-1">
+                            <label for="totalSqftInput" class="form-label">Total SQFT</label>
+                            <input readonly type="number" id="totalSqftInput" name="TotalSQFT" class="form-control totalSqftInput1"
+                                >
+                        </div>
+                        <div style="width: 12%;" class="col-md-2">
+                            <label for="remarksInput1" class="form-label">Remarks</label>
+                            <input required type="text" name="Remarks" class="form-control" id="remarksInput1">
+                        </div>
+
+                        <div style="width: 10%;" class="col-md-2">
+                            <label for="finishInput1" class="form-label">Finish</label>
+                            <input required type="text" name="Finish" class="form-control" id="finishInput1">
+                        </div>
+                        <div style="width: 10%;" class="col-md-1">
+                            <label for="rateInput" class="form-label">Rate SQFT</label>
+                            <input required type="number" name="RateSQFT" class="form-control rateInput1" id="rateInput">
+                        </div>
+                        <div style="width: 10%;" class="col-md-2">
+                            <label for="amountInput" class="form-label">Amount</label>
+                            <input readonly type="number" name="Amount" class="form-control amountInput1"
+                                id="amountInput">
+                        </div>
+
+                        <div align="right" class="mt-2">
+                            <button onclick='cancelAddItem()' type="button" class=" btn btn-primary">Cancel </button>
+                            <button id="addItemBtn" type="submit" class=" btn btn-primary">Add Item</button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            {{!-- <div class="container row">
 
 
                 <div align='left' class=" col-md-12">
                     <p class="  card-text"><b>Total Amount: </b> {{TotalAmount}} </p>
                 </div>
+
                 <div class="col-md-12">
                     <p class=" text-lg card-text "><b>Total Amount in Words:</b> {{../TotalamountInWords}} </p>
                 </div>
 
-            </div>
+            </div> --}}
 
-            {{/with}}
+            {{!-- {{/with}} --}}
         </div>
     </div>
+    {{/with}}
 
-    <div id="addItemDiv" hidden class="card rounded mx-2 mb-2 mt-3  border border-muted   ">
-        <p class=" fs-3 text-center mt-3 fw-light text-muted">Add Item </p>
-        {{#with response}}
-        <form id="addItemForm" method="post" class="" action='addItem/{{_id}}'>
-
-            <div class="row mx-1 mt-2 g-2">
-                <div class="col-md-8  form-floating mb-3 mt-3 ">
-                    <input required type="text" class="form-control" name="ItemName" id="Item" value="{{Item}}"
-                        placeholder="Item">
-                    <label for="Item">Item</label>
-                </div>
-                <div class="col-md-4  form-floating mt-3 mb-3 ">
-                    <input required type="number" class="form-control" name="Thickness" id="thickness" value="{{Thickness}}"
-                        placeholder="Thickness">
-                    <label for="thickness">Thickness</label>
-                </div>
-            </div>
-
-            <div class="row g-2  mx-1">
-                <div class="col-md-3 form-floating mb-3 ">
-                    <input  required type="number" class="form-control widthInput" name="Width" id="widthInput" value="{{Width}}"
-                        placeholder="Width">
-                    <label for="widthInput">Width</label>
-                </div>
-                <div class="col-md-3 form-floating mb-3">
-                    <input required  type="number" class="form-control heightInput" name="Height" id="heightInput"
-                        value="{{Height}}" placeholder="Height">
-                    <label for="heightInput">Height</label>
-                </div>
-                <div class="col-md-2 form-floating mb-3">
-                    <input required type="number" class="form-control qtyInput" name="QTY" id="qtyInput" value="{{QTY}}"
-                        placeholder="QTY">
-                    <label for="qtyInput">Qty</label>
-                </div>
-                <div class="col-md-4 form-floating mb-3">
-                    <input type="number" readonly class="form-control totalSqftInput" name="TotalSQFT" id=""
-                        value="{{TotalSQFT}}" placeholder="Total SQFT">
-                    <label for="totalSqftInput">Total SQFT</label>
-                </div>
-            </div>
-            <div class="row g-2  mx-1">
-                <div class="col-md-8 form-floating mb-3 ">
-                    <input required type="text" class="form-control" id="Remarks" name="Remarks" value="{{Remarks}}"
-                        placeholder="Remarks">
-                    <label for="Item">Remarks</label>
-                </div>
-                <div class="col-md-4 form-floating ">
-                    <input required type="text" class="form-control" id="Finish" name="Finish" value="{{Finish}}"
-                        placeholder="Finish">
-                    <label for="Finish">Finish</label>
-                </div>
-            </div>
-            <div class="row g-2  mx-1">
-                <div class="col-md-8 form-floating mb-3 ">
-                    <input required type="number" class="form-control rateInput" name="RateSQFT" value="{{RateSQFT}}" id=""
-                        placeholder="Rate SQFT">
-                    <label for="rateInput">Rate SQFT</label>
-                </div>
-                <div class="col-md-4 form-floating ">
-                    <input type="number" readonly class="form-control amountInput" name="Amount" value="{{Amount}}"
-                        id="amountInput" placeholder="Amount">
-                    <label for="amountInput">Amount</label>
-                </div>
-            </div>
-            <div align="center">
-                <button onclick='addItem()' type="button" class=" btn btn-primary">Cancel </button>
-                <button type="submit button" class=" btn btn-primary">Add Item</button>
-            </div>
-
-        </form>
-        {{/with}}
-
-    </div>
 
 
 

@@ -3,8 +3,11 @@ const Schema = mongoose.Schema;
 
 const Item = new Schema({
     _id: Number,
-    Date: Date,
+    Date: String,
     SiteName: String,
+    ClientName: String,
+    ClientPhone: Number,
+    DeliveryDate: String,
 
     Items: [{
         ItemName: String,

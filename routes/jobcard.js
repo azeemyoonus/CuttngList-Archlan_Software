@@ -12,6 +12,8 @@ router.get('/editItem/:no/:cardNo', itemControllers.editItem);
 
 router.get('/downloadExcel/:no',itemControllers.downloadExcel);
 
+router.post('/updateJobCard/:id', itemControllers.updateJobCard);
+
 router.post('/updateItem/:id/:cardNo', itemControllers.updateItem);
 
 router.delete('/:no/deleteItem/:id', itemControllers.deleteItem);

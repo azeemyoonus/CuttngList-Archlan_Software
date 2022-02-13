@@ -63,13 +63,14 @@ exports.updateItem = (id, jobCardNo, data) => {
         await Item.updateOne({ _id: parseInt(jobCardNo), "Items._id": mongoose.Types.ObjectId(id) },
             {
                 $set: {
-                    "Items.$.ItemName": data.Item,
+                    "Items.$.ItemName": data.ItemName,
                     "Items.$.Thickness": data.Thickness,
-                    "Items.$.width": data.width,
+                    "Items.$.Width": data.Width,
                     "Items.$.Height": data.Height,
                     "Items.$.QTY": data.QTY,
                     "Items.$.TotalSQFT": data.TotalSQFT,
                     "Items.$.Remarks": data.Remarks,
+                    "Items.$.Finish": data.Finish,
                     "Items.$.RateSQFT": data.RateSQFT,
                     "Items.$.Amount": data.Amount
                 }
@@ -168,7 +169,7 @@ exports.getJobCardDetails = (cardNO) => {
             }
             else if (!err){
                 
-                console.log([doc]);
+                // console.log([doc]);
                 resolve([doc]);
             }
             else {
@@ -176,5 +177,14 @@ exports.getJobCardDetails = (cardNO) => {
                 reject(err);
             }
         });
+    })
+}
+
+exports.updateJobCard=(id, data)=>{
+    return new Promise(async(resolve, reject)=>{
+        await Item.findByIdAndUpdate(id, data, function(err, docs){
+            if(err) reject(err);
+            else resolve (docs);
+        } )
     })
 }
