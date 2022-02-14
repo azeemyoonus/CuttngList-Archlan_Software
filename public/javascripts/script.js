@@ -87,6 +87,7 @@ findTotalAmount2 = (id) => {
   findTotalSqft2(id);
 };
 
+// deleteEditItem
 
 // $("#dateInput").on("change", function () {
 //   update();

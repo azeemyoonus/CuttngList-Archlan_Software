@@ -205,7 +205,7 @@
                             </div>
 
                             <div align="right" class="mt-2">
-                                <button onclick='cancelEditItem()' type="button" class=" btn bg-light border border-primary  text-primary">Delete This Item
+                                <button onclick="deleteItem('{{_id}}','{{ItemName}}','{{Thickness}}','{{Width}}','{{Height}}','{{QTY}}','{{TotalSQFT}}','{{RateSQFT}}','{{Amount}}', {{../_id}})" type="button" class=" btn bg-light border border-primary  text-primary">Delete This Item
                                 </button>
                                 
                                 <button id="updateItemBtn" type="button submit" class=" btn bg-light border border-primary  text-primary">Update Item</button>
