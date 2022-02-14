@@ -11,6 +11,8 @@ router.get('/', itemControllers.getAllItems);
 
 // router.delete('/deleteItem/:id', itemControllers.deleteItem);
 
+router.get("/searchJobCard", itemControllers.searchJobCard);
+
 router.get("/addNewJobCard", itemControllers.newJobCard);
 router.post("/addJobCard", itemControllers.addNewJobCard);
 // router.post("/getjobcard", itemControllers.getJobCard);

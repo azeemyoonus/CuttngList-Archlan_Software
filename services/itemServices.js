@@ -135,17 +135,37 @@ exports.getTotalAmount = (id) => {
 
 exports.getTotalSQFT = (id) => {
     return new Promise(async (resolve, reject) => {
-        total = await Item.aggregate([{
-
-            $group:
+        total = await Item.aggregate([
             {
-                _id: null,
-                total: { $sum: "$TotalSQFT" }
+                $match: { _id: parseInt(id) },
+            },
+
+            { $unwind: "$Items" },
+
+            {
+                $group:
+                {
+                    _id: null,
+                    total: { $sum: "$Items.TotalSQFT" }
+                }
             }
 
-        }]).exec((err, data) => {
+        ]).exec(async (err, data) => {
             if (err) reject(err);
-            else resolve(data[0].total);
+            else if (data.length != 0) {
+                await Item.findOneAndUpdate({ _id: parseInt(id) }, { TotalSQFT: data[0].total.toFixed(3) }).then((res) => {
+                    resolve(data[0].total)
+                }).catch((err) => {
+                    reject(err);
+                })
+            }
+        else {
+            await Item.findOneAndUpdate({ _id: parseInt(id) }, { TotalSQFT: 0 }).then((res) => {
+                resolve(0)
+            }).catch((err) => {
+                reject(err);
+            })}
+
         });
     })
 }
@@ -188,5 +208,16 @@ exports.updateJobCard=(id, data)=>{
             reject(err);
         })            
          
+    })
+}
+
+exports.findJobCard=(id)=>{
+    return new Promise(async(resolve, reject)=>{       
+        await Item.findOne({_id: id}).then((res)=>{           
+            resolve(res);  
+            console.log(res);
+        }).catch((err)=>{        
+            reject(err);
+        })
     })
 }

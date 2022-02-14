@@ -5,14 +5,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  {{!--
-  <script type="module" src="/node_modules/popups/dist/popupS.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/node_modules/popups/css/popupS.min.css">
-  <link rel="stylesheet" href="/node_modules/popups/css/popupS.css">
-
-  </link> --}}
-
-  {{!-- cdn vanilla datepicker --}}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/css/datepicker.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
 
@@ -41,7 +33,7 @@
             <div class=" text-right collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="ms-auto nav  navbar-nav  ">
 
-                <form action="/getjobcard" method="post" id="jobcardForm" class="d-flex">
+                <form action="/searchJobCard" method="get" id="jobcardForm" class="d-flex">
                   <input id="jobNoInput" class="form-control me-2 text-wrap" value="" name="jobCardNo" type="search"
                     placeholder="Job Card Number" aria-label="Search">
                   <button id="jobSearchBtn" class="btn btn-outline-success text-wrap" type="submit">Search </button>

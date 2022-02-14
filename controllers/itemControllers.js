@@ -29,12 +29,7 @@ exports.downloadExcel = async (req, res) => {
     var response = await itemservices.getJobCardDetails(req.params.no)
     response = response[0].toJSON()
     // console.log(response[0].length);
-    arr = response.Items
-    console.log(arr.length);
-    slNOs = [];
-    for (var i = 1; i <= arr.length; i++) {
-        slNOs[i] = i;
-    }
+  
     var html1 = fs.readFileSync("./views/forPdf.hbs", "utf8");
 
     var options = {
@@ -42,38 +37,30 @@ exports.downloadExcel = async (req, res) => {
         orientation: "landscape",
         border: "3mm"
     };
-    const path = "./public/datas/Job Card"+ req.params.no +".pdf";
+    const path = "./public/datas/Job Card" + req.params.no + ".pdf";
     var document = {
         type: 'file',     // 'file' or 'buffer'
         template: html1,
         context: {
-            needed: response,
-            slNO: slNOs,
+            needed: response,           
         },
         path: path,    // it is not required if type is buffer
     };
-
+    pdf.registerHelper('eval', function (...e) {
+        e.pop();
+        const args = e.join('');
+        return eval(args);
+    }
+    );
     pdf.create(document, options)
         .then(async (response) => {
             res.download(`${path}`);
-            console.log(response);
-            // res.redirect('/viewjobcard/' + req.params.no);
+
         })
         .catch((error) => {
             console.error(error);
         });
 
-
-
-    // try {
-    //     const data = await workbook.xlsx.writeFile(`${path}/Job Card ` + details[0]._id + `.xlsx`)
-    //         .then(async () => {
-    //             res.download(`${path}/Job Card ` + details[0]._id + `.xlsx`);
-    //         })
-
-    // } catch (message) {
-    //     res.render("error", { message });
-    // }
 
 };
 
@@ -121,16 +108,14 @@ exports.addNewJobCard = async (req, res) => {
 
 exports.viewJobCard = async (req, res) => {
     TotalAmount = await itemservices.getTotalAmount(req.params.no);
+    TotalSqft = await itemservices.getTotalSQFT(req.params.no);
     const TotalamountInWords = await generalServices.rupeesToWords(TotalAmount);
     await itemservices.getJobCardDetails(req.params.no).then((response) => {
         response = response[0];
-        // res.json(response);
+
         res.render('jobcard', { response, TotalamountInWords });
     }).catch((err) => {
-        // await itemservice.addJobCard()
-        // res.render('jobcard', { response: true });
-
-        // res.render('jobcard',{err, response, TotalamountInWords})
+        res.render('addJobCard', { response: true });
     })
 }
 
@@ -139,4 +124,14 @@ exports.updateJobCard = async (req, res) => {
     await itemservices.updateJobCard(req.params.id, req.body).then((response) => {
         res.json({ status: true })
     })
+}
+exports.searchJobCard = async (req, res) => {
+    console.log("searching");
+    await itemservices.findJobCard(req.query.jobCardNo).then((response) => {
+        console.log(response);
+        res.render("alljobcards", { response });
+    }).catch((err) => {
+        // res.render("alljobcards")
+    })
+
 }

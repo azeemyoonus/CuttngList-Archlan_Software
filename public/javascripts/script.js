@@ -31,8 +31,6 @@ $(".widthInput1").on("change paste keyup cut select", function () { findTotalAmo
 $(".heightInput1").on("change paste keyup cut select", function () { findTotalAmount1() });
 
 
-$("#clientNameInput").focus();
-
 
 findTotalSqft2 = (id) => {
 
@@ -115,13 +113,12 @@ function deleteItem(
 }
 
 
-$("#jobcardForm").submit((e) => {
-  e.preventDefault();
-  data = $("#jobNoInput").val();
+// $("#jobcardForm").submit((e) => {
+//   e.preventDefault();
+//   data = $("#jobNoInput").val();
+//   location.href = "/viewjobcard/" + data;
 
-  location.href = "/viewjobcard/" + data;
-
-})
+// })
 
 
 var stas_addItBtn = true;
