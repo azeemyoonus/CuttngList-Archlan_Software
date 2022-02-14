@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
 
 {{#with needed}}
-{{#with slNO}}
+
 <div id="mainCardDiv" class="card card-body rounded mx-2 mb-2 mt-4  border border-muted ">
     {{!-- <div id="cardBodyDiv" class=""> --}}
         <div>
@@ -81,17 +81,17 @@
                     </tr>
 
                     <tr class="col-md-12" >
-                        <th class="col-md-1">SL </th>
-                        <th class="col-md-1">Item</th>
-                        <th class="col-md-1">Thic<br>kne<br>ss</th>
-                        <th class="col-md-1">Wid<br>th</th>
-                        <th class="col-md-1">Hei<br>ght</th>
-                        <th class="col-md-1">QTY</th>
-                        <th class="col-md-1">TOTAL SQ.FT</th>
-                        <th class="col-md-1">REMARKS</th>
-                        <th class="col-md-1">FINISH</th>
-                        <th class="col-md-1">RATE<br>SQFT</th>
-                        <th class="col-md-1">Amount</th>                    
+                        <th class="col-md-1 text-wrap">SL </th>
+                        <th class="col-md-1 text-wrap">Item</th>
+                        <th class="col-md-1 text-wrap">Thic<br>kne<br>ss</th>
+                        <th class="col-md-1 text-wrap">Wid<br>th</th>
+                        <th class="col-md-1 text-wrap">Hei<br>ght</th>
+                        <th class="col-md-1 text-wrap">QTY</th>
+                        <th class="col-md-1 text-wrap">TOTAL SQ.FT</th>
+                        <th class="col-md-1 text-wrap">REMARKS</th>
+                        <th class="col-md-1 text-wrap">FINISH</th>
+                        <th class="col-md-1 text-wrap">RATE<br>SQFT</th>
+                        <th class="col-md-1 text-wrap">Amount</th>                    
                     </tr>
 
                 </thead>
@@ -101,16 +101,16 @@
 
                     <tr>                      
                         <td id="serialNO">{{../../slNOs}}</td>                        
-                        <td class="text-dark"> {{this.ItemName}}</td>
-                        <td class="text-dark">{{this.Thickness}}</td>
-                        <td class="text-dark">{{this.Width}}</td>
-                        <td class="text-dark">{{this.Height}}</td>
-                        <td class="text-dark">{{this.QTY}}</td>
-                        <td class="text-dark">{{this.TotalSQFT}}</td>
-                        <td class="text-dark">{{this.Remarks}}</td>
-                        <td class="text-dark">{{this.Finish}}</td>
-                        <td class="text-dark">{{this.RateSQFT}}</td>
-                        <td class="text-dark">{{this.Amount}}</td>
+                        <td class="text-dark text-wrap"> {{this.ItemName}}</td>
+                        <td class="text-dark text-wrap">{{this.Thickness}}</td>
+                        <td class="text-dark text-wrap">{{this.Width}}</td>
+                        <td class="text-dark text-wrap">{{this.Height}}</td>
+                        <td class="text-dark text-wrap">{{this.QTY}}</td>
+                        <td class="text-dark text-wrap">{{this.TotalSQFT}}</td>
+                        <td class="text-dark text-wrap">{{this.Remarks}}</td>
+                        <td class="text-dark text-wrap">{{this.Finish}}</td>
+                        <td class="text-dark text-wrap">{{this.RateSQFT}}</td>
+                        <td class="text-dark text-wrap">{{this.Amount}}</td>
 
                     </tr>
                     {{/each}}
@@ -125,8 +125,7 @@
                 </tbody>
 
             </table>
-            {{/with}}
-            {{/with}}
+            {{/with}}        
 
         {{!-- </div> --}}
 

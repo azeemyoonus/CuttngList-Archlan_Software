@@ -34,13 +34,6 @@ $(".heightInput1").on("change paste keyup cut select", function () { findTotalAm
 $("#clientNameInput").focus();
 
 
-
-
-
-$("#dateInput").on("change", function () {
-  update();
-})
-
 findTotalSqft2 = (id) => {
 
   var height = document.getElementById("heightInput" + id).value;
@@ -68,18 +61,6 @@ findTotalAmount2 = (id) => {
   amountInputField.value = amount;
   findTotalSqft2(id);
 };
-
-// deleteEditItem
-
-// $("#dateInput").on("change", function () {
-//   update();
-// })
-// $("#dateInput").on("change", function () {
-//   update();
-// })
-// $("#dateInput").on("change", function () {
-//   update();
-// })
 
 
 
@@ -239,14 +220,11 @@ $("#clentPhoneInput").keypress(function (event) {
 $("#deliveryDateInput").keypress(function (event) {
   //press enter button
   if (event.which == 13) {
-
-    alert("are yo sure you want create");
-    $("#deliveryDateInput").focus();
-
-
+    $("#itemInput1").focus();   
+    window.scrollTo(0,document.body.scrollHeight);
+   
   }
 })
-
 
 // //itemname input to thickness input
 // $("#itemInput").keypress(function (event) {
@@ -312,62 +290,6 @@ $("#deliveryDateInput").keypress(function (event) {
 //   }
 // })
 
-// $("#addItemForm").submit((e)=>{
-//   e.preventDefault();
-
-//   alert("button now clicked");
-// })
-
-
-// $("#createJobcardForm").submit((e) => {
-//   e.preventDefault();
-//   alert("finally");
-//   $.ajax({
-//     url: '/addJobCard',
-//     method: 'post',
-//     data: $("#createJobcardForm").serialize(),
-//     success: (response) => {
-//       window.location.href='/viewjobcard/'+data._id;
-//     }
-//   })
-
-
-
-// })
-// {{!-- action='addItem/{{_id}} --}}
-// $("#addItemForm").submit((e) => {
-//   e.preventDefault();
-//   data = $("#addItemForm").serialize();
-
-//   id = $("#jobcardInput").val();
-//   $.ajax({
-//     url: 'addItem/'+id,
-//     method: 'post',
-//     data: $("#addItemForm").serialize(),
-//     success: (response) => {
-//       $("#mainitemsDiv").load(location.href + " #itemsDiv");
-//     }
-//   })
-// })
-
-
-
-// addItem = () => {
-
-
-
-//   if (stas_addItBtn) {
-//     $("#addItemDiv").removeAttr('hidden');
-//     var position = $('#addItemDiv').position();
-//     position.top = position.top - 90;
-//     window.scrollTo(position);
-//     stas_addItBtn = false;
-//   }
-//   else {
-//     $("#addItemDiv").attr("hidden", true);
-//     stas_addItBtn = true;
-//   }
-// }
 
 var stas_cnclItmBtn = true;
 function editItem(id) {
@@ -394,7 +316,6 @@ $("#deliveryDateInput").on("blur", function () { updateJobCard() });
 function updateJobCard() {
   data = $("#jobcardForm1").serialize();
   id = $("#jobcardInput").val();
-  console.log(data);
   $.ajax({
     url: '/viewjobcard/updateJobCard/' + id,
     method: 'post',

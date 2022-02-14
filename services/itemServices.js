@@ -186,9 +186,7 @@ exports.updateJobCard=(id, data)=>{
            resolve(response);
         }).catch((err)=>{
             reject(err);
-        })
-            // if(err) reject(err);
-            // else resolve (docs);
+        })            
          
     })
 }
