@@ -160,28 +160,29 @@
                                 <input required value="{{ItemName}}" type="text" name="ItemName" class="form-control" id="itemInput">
                             </div>
                             <div style="width: 8%;" class="col-md-1 ">
-                                <label for="thickInput" class="form-label">Thickness</label>
-                                <input required type="number" value="{{Thickness}}" name="Thickness" class="form-control thickInput"
-                                    id="thickInput">
+                                <label for="thickInput{{_id}}" class="form-label">Thickness</label>
+                                <input required type="number" oninput="findTotalSqft2()" value="{{Thickness}}" name="Thickness" class="form-control thickInput"
+                                    id="thickInput{{_id}}">
                             </div>
                             <div style="width: 8%;" class="col-md-1">
-                                <label for="widthInput" class="form-label">Width</label>
-                                <input required type="number" value="{{Width}}" name="Width" class="form-control widthInput"
-                                    id="widthInput">
+                                <label for="widthInput{{_id}}" class="form-label">Width</label>
+                                <input required type="number" value="{{Width}}" oninput="findTotalSqft2('{{_id}}')" name="Width" class="form-control widthInput"
+                                    id="widthInput{{_id}}">
                             </div>
                             <div style="width: 8%;" class="col-md-1 ">
-                                <label for="heightInput" class="form-label">Height</label>
-                                <input required type="number" value="{{Height}}" name="Height" class="form-control heightInput"
-                                    id="heightInput">
+                                <label for="heightInput{{_id}}" class="form-label">Height</label>
+                                <input required type="number" value="{{Height}}" oninput="findTotalSqft2('{{_id}}')" name="Height" class="form-control heightInput"
+                                    id="heightInput{{_id}}">
                             </div>
                             <div style="width: 8%;" class="col-md-1 ">
-                                <label for="qtyInput" class="form-label">QTY</label>
-                                <input required type="number" value="{{QTY}}" name="QTY" class="form-control qtyInput" id="qtyInput">
+                                <label for="qtyInput{{_id}}" class="form-label">QTY</label>
+                                <input required type="number" value="{{QTY}}" name="QTY" oninput="findTotalSqft2('{{_id}}')" class="form-control qtyInput" 
+                                id="qtyInput{{_id}}">
                             </div>
                             <div style="width: 10%;" class="col-md-1">
                                 <label for="totalSqftInput" class="form-label">Total SQFT</label>
                                 <input readonly type="number" value="{{TotalSQFT}}" name="TotalSQFT" class="form-control totalSqftInput"
-                                    id="totalSqftInput">
+                                    id="totalSqftInput{{_id}}">
                             </div>
                             <div style="width: 12%;" class="col-md-2">
                                 <label for="remarksInput" class="form-label">Remarks</label>
@@ -193,14 +194,14 @@
                                 <input required type="text" name="Finish" value="{{Finish}}" class="form-control" id="finishInput">
                             </div>
                             <div style="width: 10%;" class="col-md-1">
-                                <label for="rateInput" class="form-label">Rate SQFT</label>
-                                <input required type="number" value="{{RateSQFT}}" name="RateSQFT" class="form-control rateInput"
-                                    id="rateInput">
+                                <label for="rateInput{{_id}}" class="form-label">Rate SQFT</label>
+                                <input required type="number" value="{{RateSQFT}}" oninput="findTotalAmount2('{{_id}}')" name="RateSQFT" class="form-control rateInput"
+                                    id="rateInput{{_id}}">
                             </div>
                             <div style="width: 10%;" class="col-md-2">
-                                <label for="amountInput" class="form-label">Amount</label>
+                                <label for="amountInput"+"{{_id}}" class="form-label">Amount</label>
                                 <input readonly type="number" value="{{Amount}}" name="Amount" class="form-control amountInput"
-                                    id="amountInput">
+                                    id="amountInput{{_id}}">
                             </div>
 
                             <div align="right" class="mt-2">

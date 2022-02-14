@@ -1,31 +1,3 @@
-findTotalSqft = () => {
-  var height = document.getElementsByClassName("heightInput")[0].value;
-  var width = document.getElementsByClassName("widthInput")[0].value;
-  var qty = document.getElementsByClassName("qtyInput")[0].value;
-  var totalSQFT = height * width * 0.0000107639104 * qty;
-  totalSQFT = totalSQFT.toFixed(3);
-  var totalSQFTInputField = document.getElementsByClassName("totalSqftInput")[0];
-  totalSQFTInputField.value = totalSQFT;
-};
-
-findTotalAmount = () => {
-  var totalSQFT = document.getElementsByClassName("totalSqftInput")[0].value;
-  var rate = document.getElementsByClassName("rateInput")[0].value;
-  var amount = totalSQFT * rate;
-  amount = amount.toFixed(3);
-  var amountInputField = document.getElementsByClassName("amountInput")[0];
-  amountInputField.value = amount;
-};
-$(".qtyInput").on("change paste keyup cut select", function () { findTotalSqft() });
-$(".widthInput").on("change paste keyup cut select", function () { findTotalSqft() });
-$(".heightInput").on("change paste keyup cut select", function () { findTotalSqft() });
-
-$(".rateInput").on("change paste keyup cut select", function () { findTotalAmount() });
-$(".totalSqftInput").on("change paste keyup cut select", function () { findTotalAmount() });
-
-$(".qtyInput").on("change paste keyup cut select", function () { findTotalAmount() });
-$(".widthInput").on("change paste keyup cut select", function () { findTotalAmount() });
-$(".heightInput").on("change paste keyup cut select", function () { findTotalAmount() });
 
 findTotalSqft1 = () => {
   var height = document.getElementsByClassName("heightInput1")[0].value;
@@ -86,6 +58,36 @@ function update(){
 $("#dateInput").on("change", function () {
   update();
 })
+
+findTotalSqft2 = (id) => { 
+  
+  var height = document.getElementById("heightInput"+id).value;
+  var width = document.getElementById("widthInput"+id).value;
+  var qty = document.getElementById("qtyInput"+id).value;
+  var totalSQFT = height * width * 0.0000107639104 * qty;
+  totalSQFT = totalSQFT.toFixed(3);
+  var totalSQFTInputField = document.getElementById("totalSqftInput"+id);
+  totalSQFTInputField.value = totalSQFT;
+  findTotalAmount2(id);
+};
+
+findTotalAmount2 = (id) => {  
+  
+  totalId ="totalSqftInput"+id;
+  var totalSQFT = $("#"+totalId).val();
+
+  rateId ="rateInput"+id;
+  var rate = $("#"+rateId).val();
+
+  var amount = totalSQFT * rate;
+  amount = amount.toFixed(3);  
+  amtId ="amountInput"+id;
+  var amountInputField = document.getElementById(amtId);
+  amountInputField.value = amount;
+  findTotalSqft2(id);
+};
+
+
 // $("#dateInput").on("change", function () {
 //   update();
 // })
