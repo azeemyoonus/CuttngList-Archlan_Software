@@ -182,9 +182,13 @@ exports.getJobCardDetails = (cardNO) => {
 
 exports.updateJobCard=(id, data)=>{
     return new Promise(async(resolve, reject)=>{
-        await Item.findByIdAndUpdate(id, data, function(err, docs){
-            if(err) reject(err);
-            else resolve (docs);
-        } )
+        await Item.findByIdAndUpdate(id, data).then((response)=>{
+           resolve(response);
+        }).catch((err)=>{
+            reject(err);
+        })
+            // if(err) reject(err);
+            // else resolve (docs);
+         
     })
 }

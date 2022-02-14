@@ -28,7 +28,13 @@ exports.downloadExcel = async (req, res) => {
     
     var response = await itemservices.getJobCardDetails(req.params.no)
     response = response[0].toJSON()
-    console.log(response);
+    // console.log(response[0].length);
+    arr=response.Items
+    console.log(arr.length);
+    slNOs= [];
+    for (var i=1; i<=arr.length; i++){
+        slNOs[i]= i;
+    }
     var html1 = fs.readFileSync("./views/forPdf.hbs", "utf8");
 
     var options = {
@@ -41,7 +47,8 @@ exports.downloadExcel = async (req, res) => {
         type: 'file',     // 'file' or 'buffer'
         template: html1,
         context: {
-            needed:response
+            needed:response,
+            slNO: slNOs,
         },
         path: "./output.pdf"    // it is not required if type is buffer
     };
@@ -341,5 +348,8 @@ exports.viewJobCard = async (req, res) => {
 // })
 
 exports.updateJobCard= async (req, res)=>{
-    await itemservices.updateJobCard(req.params.id, req.body)
+    console.log("reached for updating jobcard");
+    await itemservices.updateJobCard(req.params.id, req.body).then((response)=>{
+        res.json({status: true})
+    })
 }
