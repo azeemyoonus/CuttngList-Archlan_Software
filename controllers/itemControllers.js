@@ -1,9 +1,11 @@
 var itemservices = require("../services/itemServices");
 var generalServices = require('../services/generalService');
 const ExcelJS = require("exceljs");
+// var pdf = require("pdf-creator-node");
+
 var pdf = require('dynamic-html-pdf');
 var fs = require("fs");
-
+var path = require('path');
 
 exports.getAllItems = async (req, res) => {
     await itemservices.getAllItems().then((response) => {
@@ -24,43 +26,45 @@ exports.addItem = async (req, res) => {
 };
 
 exports.downloadExcel = async (req, res) => {
-    console.log(req.params.no);
 
     var response = await itemservices.getJobCardDetails(req.params.no)
     response = response[0].toJSON()
-    // console.log(response[0].length);
-  
+
     var html1 = fs.readFileSync("./views/forPdf.hbs", "utf8");
+    const path_pdf = "./public/datas/Job Card" + req.params.no + ".pdf";
+    const url = `http://localhost:3000`;
+
 
     var options = {
         format: "A4",
-        orientation: "landscape",
-        border: "3mm"
+        orientation: "portrait",
+        border: "3mm",        
     };
-    const path = "./public/datas/Job Card" + req.params.no + ".pdf";
-    var document = {
-        type: 'file',     // 'file' or 'buffer'
-        template: html1,
-        context: {
-            needed: response,           
-        },
-        path: path,    // it is not required if type is buffer
-    };
+   
     pdf.registerHelper('eval', function (...e) {
         e.pop();
         const args = e.join('');
         return eval(args);
-    }
-    );
+    });
+
+    var document = {
+        type: 'file',
+        template: html1,
+        context: {
+            needed: response,          
+            url
+        },
+        path: path_pdf,   
+    };
+
     pdf.create(document, options)
-        .then(async (response) => {
-            res.download(`${path}`);
+        .then((response) => {
+            res.download(`${path_pdf}`);
 
         })
         .catch((error) => {
             console.error(error);
         });
-
 
 };
 

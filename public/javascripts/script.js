@@ -310,6 +310,13 @@ $("#clentPhoneInput").on("blur", function () { updateJobCard() });
 $("#deliveryDateInput").on("blur", function () { updateJobCard() });
 
 
+$("#jobcardInput").on("blur", function () { addJobCard() });
+
+function addJobCard(){
+  // trigger 'createJobBtn' button;
+  $("#createJobBtn").click();
+}
+
 function updateJobCard() {
   data = $("#jobcardForm1").serialize();
   id = $("#jobcardInput").val();
