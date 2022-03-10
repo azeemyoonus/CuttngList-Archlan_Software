@@ -330,6 +330,34 @@ function updateJobCard() {
   })
 }
 
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("/javascripts/serviceWorker.js").then((res)=>{
+    console.log("service worker registered");
+    console.log(res);
+  }).catch((err)=>{
+    console.log("Service Worker not registered");
+    console.log(err);
+  })
+}
+else{
+  alert("service worker not working");
+}
 
+function deleteJobCard(id){
 
+  if (confirm("Are You sure to delete Job Card "+id+" ?")){
+    $.ajax({
+      // /viewjobcard/" + jobCardNO + "/deleteItem/" + id
+      url: "/deleteJobCard/"+id,
+      method: "delete",
+      success: (response) => {
+        if (response.status == true) {
+          location.reload();
+        } else {
+          location.href = "";
+        }
+      },
+    });
+  }
+}
 

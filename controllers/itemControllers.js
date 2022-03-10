@@ -32,7 +32,7 @@ exports.downloadExcel = async (req, res) => {
 
     var html1 = fs.readFileSync("./views/forPdf.hbs", "utf8");
     const path_pdf = "./public/datas/Job Card" + req.params.no + ".pdf";
-    const url = `http://archlan.herokuapp.com`;
+    const url = `http://localhost:3000`;
 
 
     var options = {
@@ -133,9 +133,20 @@ exports.searchJobCard = async (req, res) => {
     console.log("searching");
     await itemservices.findJobCard(req.query.jobCardNo).then((response) => {
         console.log(response);
-        res.render("alljobcards", { response });
+        if(response!=null)
+        res.render("jobcard", { response });
+        else {
+           res.redirect('/');
+        }
     }).catch((err) => {
         // res.render("alljobcards")
     })
 
+}
+
+exports.deleteJobCard = async (req, res)=>{
+    console.log(req.params.id);
+    await itemservices.deleteJobCard(req.params.id).then((resp)=>{
+        res.json({status:true});
+    })
 }

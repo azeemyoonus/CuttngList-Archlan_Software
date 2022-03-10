@@ -221,3 +221,13 @@ exports.findJobCard=(id)=>{
         })
     })
 }
+
+exports.deleteJobCard=(id)=>{
+    return new Promise(async (resolve, reject)=>{
+        await Item.deleteOne({_id:id}).then((res)=>{
+            resolve(res)
+        }).catch((err)=>{
+            reject(err);
+        })
+    })
+}

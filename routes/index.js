@@ -9,7 +9,7 @@ router.get('/', itemControllers.getAllItems);
 // router.get('/editItem/:id', itemControllers.editItem);
 // router.post('/updateItem/:id', itemControllers.updateItem);
 
-// router.delete('/deleteItem/:id', itemControllers.deleteItem);
+router.delete('/deleteJobCard/:id', itemControllers.deleteJobCard);
 
 router.get("/searchJobCard", itemControllers.searchJobCard);
 

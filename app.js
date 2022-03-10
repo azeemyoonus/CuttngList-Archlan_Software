@@ -13,23 +13,12 @@ var hbs =require('express-handlebars');
 
 var app = express();
 
+
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views'))); 
 app.set('view engine', 'hbs');
 
-// app.engine('hbs', hbs.engine({
-//   extname: 'hbs',
-//   defaultLayout: 'layout',
-//   layoutsDir: __dirname + '/views/',
-//   partialsDir: __dirname + '/views/partials'
-// }))
-
-// app.set("view engine", "hbs");
-// app.set("views", "views");
-
-
-// app.set('partial', path.join(__dirname, 'views/partials'));
-// hbs.registerPartials(__dirname + '/views/partials');
 
 
 

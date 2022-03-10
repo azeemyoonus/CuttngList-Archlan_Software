@@ -1,0 +1,14 @@
+{
+    "name" : "Cutting List",
+    "display" : "standalone",
+    "icons" : [
+        {
+            "src" : "../images/logo144x144.png",
+            "sizes" : "144x144",
+            "type" : "image/png"            
+        }
+        
+    ],
+    "start_url" : "index.html",
+    "scope" : "."
+}

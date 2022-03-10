@@ -4,7 +4,11 @@
         {{!-- <div align='right' class="card-header">
             <i class="bi bi-file-excel"></i> Download Excel
         </div> --}}
-        <div class="card-body">
+        <div align='right' class="me-1 my-0 py-0 pt-1 ">
+           <img onclick="deleteJobCard({{_id}})" class="my-0 py-0 pt-1" src="images/trash3.svg">
+           </div>
+        <div class="mt-0 py-0 pb-1  card-body">
+
             <h5 class="card-title">Job Card No: {{_id}} </h5>
             <p class="text-lg card-text ">Site Name: {{SiteName}} </p>
             <p class="card-text">Date: {{Date}} </p>
