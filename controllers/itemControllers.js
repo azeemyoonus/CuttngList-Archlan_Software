@@ -32,7 +32,7 @@ exports.downloadExcel = async (req, res) => {
 
     var html1 = fs.readFileSync("./views/forPdf.hbs", "utf8");
     const path_pdf = "./public/datas/Job Card" + req.params.no + ".pdf";
-    const url = `archlan.herokuapp.com`;
+    const url = `http://archlan.herokuapp.com`;
 
 
     var options = {
