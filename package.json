@@ -1,16 +1,10 @@
 {
   "name": "archlan-software",
   "version": "0.0.0",
-  "description": "",
-  "main": "app.js",
-  "bin": "app.js",
+  "private": true,
   "scripts": {
-    "dev": "nw ../Archlan_Software/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.4.1",
     "convert-rupees-into-words": "^1.0.6",
@@ -33,16 +27,5 @@
     "popups": "^1.1.3",
     "promise": "^8.1.0"
   },
-  "devDependencies": {
-    "nw": "^0.12.0",
-    "nw-builder": "^3.5.7"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/azeemyoonus/Archlan_Software.git"
-  },
-  "bugs": {
-    "url": "https://github.com/azeemyoonus/Archlan_Software/issues"
-  },
-  "homepage": "https://github.com/azeemyoonus/Archlan_Software#readme"
+  "devDependencies": {}
 }
